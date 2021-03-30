@@ -15,6 +15,6 @@ class CompanyController
         // then the view will actually display them.
 
         //load the view
-        require './View/single-company.php';
+        header('Location: ./View/single-company.php?company_id=' . $id);
     }
 }
