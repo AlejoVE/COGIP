@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to GOGIP</h1>
+        <h1 style="text-align: center;">Welcome to GOGIP</h1>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand"><img src="../src/img/cogip-logo.jpeg" alt="logoh" width="60px" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
