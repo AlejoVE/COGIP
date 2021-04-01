@@ -3,6 +3,8 @@
 // aligner les tirets qui séparent les valeurs
 // Ajouter header
 
+require_once 'includes/header.php';
+
 try {
     $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
     // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

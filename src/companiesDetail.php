@@ -65,7 +65,7 @@ $id = $product['person_id'];
     Contact person for these invoices :
     </h3>
     <p><?php
-   $results = $db->query("SELECT * FROM invoices JOIN companies ON company_id = id_comp WHERE personId = $id  ORDER BY id_comp DESC LIMIT 0,5  ");
+   $results = $db->query("SELECT * FROM companies WHERE personId = $id  ORDER BY id_comp DESC LIMIT 0,5  ");
    echo '<strong><hr>' . 'Last invoices: '  . '<br>';
    echo '<br>';
    while ($donnees = $results->fetch())

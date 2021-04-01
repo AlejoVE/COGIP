@@ -1,7 +1,22 @@
 <?php
+require_once 'includes/header.php';
 
+$test = 1;
+$poubelle = '';
+$button = '<form method ="get" action="index.php"><input type="submit" name="test" >click</input></form>';
 $name=" ";
-echo 'Bonjour'.$name.'!';
+
+if(isset($_GET['test'])){
+ //   if(isset($_POST['first_name'])){
+        $name= 'Jean';
+   //     echo $button = '<button>Test</button>';
+    //}
+}
+
+echo 'Bonjour'.$name.'!'.$button;
+
+
+
 
 try {
     $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
@@ -47,18 +62,13 @@ while ($donnees = $results->fetch())
 }
 $results->closeCursor();
 
-//contacts details
-$results = $db->query("SELECT * FROM people   ");
-echo '<strong><hr>' . 'Last invoices: '  . '<br>';
-echo '<br>';
-// while ($donnees = $results->fetch())
-// { 
-//     echo $donnees['name'].'<br>';
+// //contacts details
+// $results = $db->query("SELECT * FROM people   ");
+
+
+// $products = $results->fetchAll(PDO::FETCH_ASSOC);
+// foreach ($products as $key => $product) {
+//     //var_dump($product['productCode']);
+//     echo '<li><a href="product.php?code='. $product['person_id'].'" >'.$product['first_name']." ".$product['last_name'].'</a></li>';
 // }
-// $results->closeCursor();
-$products = $results->fetchAll(PDO::FETCH_ASSOC);
-foreach ($products as $key => $product) {
-    //var_dump($product['productCode']);
-    echo '<li><a href="product.php?code='. $product['person_id'].'">'.$product['first_name']." ".$product['last_name'].'</a></li>';
-}
 
