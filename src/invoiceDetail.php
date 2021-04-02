@@ -60,10 +60,10 @@ $id2 = $product['invoice_id'];
     <title>Product</title>
 </head>
 
-<body>
+<body style="text-align: center;">
     <h1>
 
-        Company : <?= $newDate ?>
+        Invoice : <?= $newDate ?>
 
     </h1>
 

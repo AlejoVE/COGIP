@@ -55,7 +55,7 @@ $id = $product['person_id'];
     <title>Product</title>
 </head>
 
-<body>
+<body style="text-align: center;">
     <h1>
         Contact : <?= $product['first_name'] . " " . $product['last_name'] ?>
     </h1>

@@ -55,7 +55,7 @@ $id = $product['id_comp'];
     <title>Product</title>
 </head>
 
-<body>
+<body style="text-align: center;">
     <h1>
         Company : <?= $product['name'] ?>
     </h1>
