@@ -17,14 +17,12 @@ $results = $db->query("SELECT * FROM invoices JOIN companies ON company_id = id_
 
 echo '<strong><hr>' . 'Last invoices: '  . '<br>';
 
-while ($donnees = $results->fetch())
-{
-    $date= $donnees['invoice_date'];
-    $strY=substr($date,0,4);
-    $strM= substr($date,5,-3);
-    $strD=substr($date, 8,9);
-    
-    echo "F".$strY.$strM.$strD."-".$donnees['invoice_id']." | ".$strD."/".$strM."/".$strY." | ".$donnees['name']." | ".$donnees['type'].'<br>';
+while ($donnees = $results->fetch()) {
+    $date = $donnees['invoice_date'];
+    $strY = substr($date, 0, 4);
+    $strM = substr($date, 5, -3);
+    $strD = substr($date, 8, 9);
+
+    echo '<a href="invoiceDetail.php?code=' . $donnees['invoice_id'] . '" >' . "F" . $strY . $strM . $strD . "-" . $donnees['invoice_id'] . '</a>' .  " | " . $strD . "/" . $strM . "/" . $strY .  " | " . $donnees['name'] . " | " . $donnees['type'] . '<br>';
 }
 $results->closeCursor();
-

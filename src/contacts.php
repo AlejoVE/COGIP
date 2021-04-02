@@ -16,12 +16,9 @@ $results = $db->query("SELECT * FROM people JOIN companies ON company_id = id_co
 echo '<strong><hr>' . 'COGIP : contacts diretory  '  . '<br>';
 echo '<br>';
 
-while ($donnees = $results->fetch())
-{
-    echo '<li><a href="product.php?code='. $donnees['person_id'].'" >'. $donnees['first_name']." 
-    ".$donnees['last_name']." | ".$donnees['phone']." | ".$donnees['email']." | ".$donnees['name'].'</a></li>'.'<br>';
-
-    
+while ($donnees = $results->fetch()) {
+    echo '<a href="product.php?code=' . $donnees['person_id'] . '" >' . $donnees['first_name'] . " 
+    " . $donnees['last_name'] . '</a>' .  " | " . $donnees['phone'] . " | " . $donnees['email'] . " | " . $donnees['name']  . '<br>';
 }
 $results->closeCursor();
 

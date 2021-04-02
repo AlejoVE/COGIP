@@ -15,11 +15,10 @@ if (isset($_GET['code'])) {
     try {
         $results = $db->prepare(
             "SELECT *
-            FROM companies
-             JOIN type_of_company
-             ON id_type = typeId  
+            FROM invoices
+             
              # The question mark instead of the ID
-             WHERE id_comp=?"
+             WHERE invoice_id=?"
         );
         //To bind the id variable to the first question mark. 
         $results->bindParam(1, $code, PDO::PARAM_STR);
@@ -32,16 +31,22 @@ if (isset($_GET['code'])) {
     // // To retreive the information for the one product that matches the ID
     $product = $results->fetch(PDO::FETCH_ASSOC);
 
-    // if($product == FALSE) {
-    //     echo "This code reference $code doesn't exist in the Database. </br> <a href='companies.php''>Go back</a>";
-    //     die();
-    // }
+    if ($product == FALSE) {
+        echo "This code reference $code doesn't exist in the Database. </br> <a href='invoice.php''>Go back</a>";
+        die();
+    }
+    $date = $product['invoice_date'];
+    $strY = substr($date, 0, 4);
+    $strM = substr($date, 5, -3);
+    $strD = substr($date, 8, 9);
+    $newDate = "F" . $strY . $strM . $strD . "-" . $product['invoice_id'];
 }
 //else {
 //     echo "You have to enter a code reference !";
 //     die();
 // }
-$id = $product['id_comp'];
+$id = $product['company_id'];
+$id2 = $product['invoice_id'];
 
 
 ?>
@@ -57,42 +62,41 @@ $id = $product['id_comp'];
 
 <body>
     <h1>
-        Company : <?= $product['name'] ?>
+
+        Company : <?= $newDate ?>
+
     </h1>
-    <p><strong>TVA :</strong> <?= $product['number_vta'] ?></p>
-    <p><strong>Type :</strong> <?= $product['type'] ?></p>
+
 
     <h3><strong>
-            <hr>Contact persons<br></h3>
+            <hr>Company linked to the invoice<br></h3>
     <p>
         <?php
-        $donnees = $db->query("SELECT * FROM people WHERE company_id = $id  ORDER BY company_id ");
+        $donnees = $db->query("SELECT * FROM companies JOIN type_of_company ON id_type = typeId WHERE id_comp = $id  ORDER BY id_comp ");
 
         while ($product = $donnees->fetch()) {
-            echo $product['first_name'] . ' ' . $product['last_name'] . ' | ' . $product['phone'] . ' | ' . $product['email'] . '<br>';
+            echo $product['name'] . ' | ' . $product['number_vta'] . ' | ' . $product['type'] .  '<br>';
         }
         $results->closeCursor();
 
         ?>
     <h3><strong>
             <hr>Invoices<br></h3>
+    </p>
     <p>
         <?php
-        $donnees = $db->query("SELECT * FROM invoices as i JOIN people ON personId = person_id WHERE i.company_id = $id  ");
+        $donnees = $db->query("SELECT * FROM people as p JOIN invoices as i ON p.company_id = i.company_id  WHERE  invoice_id = $id2 AND p.person_id = i.personId");
 
         while ($product = $donnees->fetch()) {
-            $date = $product['invoice_date'];
-            $strY = substr($date, 0, 4);
-            $strM = substr($date, 5, -3);
-            $strD = substr($date, 8, 9);
 
-            echo "F" . $strY . $strM . $strD . "-" . $product['invoice_id'] . " | " . $strD . "/" . $strM . "/" . $strY . " | " . $product['first_name'] . ' ' . $product['last_name'] . '<br>';
+
+            echo   $product['first_name'] . " " . $product['last_name']  .  " | " . $product['email'] . " | " . $product['phone'] .  '<br>';
         }
 
 
         ?>
 
-        <?php echo '<a href="companies.php">Go back</a>'; ?>
+        <?php echo '<a href="invoice.php">Go back</a>'; ?>
     </p>
 </body>
 
