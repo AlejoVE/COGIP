@@ -1,25 +1,25 @@
 <?php
 require_once 'includes/header.php';
 require_once 'Model/Manager.php';
+require_once 'Model/InvoiceManager.php';
+require_once 'Model/ContactsManager.php';
+require_once 'Model/CompaniesManager.php';
 
+//New instance of InvoiceManager class
+$new_invoices_object = new InvoicesManager();
+//Get lasts 5 invoices
+$invoices = $new_invoices_object-> getLastFive();
 
-$database = new Manager();
+//New instance of ContactsManager class
+$new_contacts_object = new ContactsManager();
+//Get lasts 5 contacts
+$contacts = $new_contacts_object-> getLastFive();
 
-//database connection
-$db = $database-> connectDb();
+//New instance of CompaniesManager class
+$new_companies_object = new CompaniesManager();
+//Get lasts 5 companies
+$companies = $new_companies_object-> getLastFive();
 
-//===========================Request Last Invoices==============================================================
-$results = $db->query("SELECT * FROM invoices JOIN companies 
-ON company_id = id_comp ORDER BY id_comp DESC LIMIT 0,5 ");
-$invoices = $results->fetchAll();
-//===========================Request Last Contacts==============================================================
-$resultsContact = $db->query("SELECT * FROM people JOIN companies 
-ON company_id = id_comp ORDER BY id_comp DESC  LIMIT 0,5 ");
-$contacts = $resultsContact->fetchAll();
-//===========================Request Last Companies==============================================================
-$resultsCompanies = $db->query("SELECT * FROM companies JOIN type_of_company 
-ON id_type = typeId ORDER BY id_comp DESC LIMIT 0,5 ");
-$companies = $resultsCompanies->fetchAll();
 //============================Buttons Delete=====================================================================
 if(isset($_GET['delete_invoice'])){
     $invoice_id = $_GET['delete_invoice'];
@@ -90,7 +90,9 @@ $name='';
                             <? echo $invoice['name']; ?> 
                         </td>
                         <td>
-                            <? if(isset($_GET['admin'])){ echo '|'.'<input type="submit" name="delete_invoice" value=" '.$invoice['invoice_id'].'" ></input>';}; ?>
+                            <?php if(isset($_GET['admin'])){?> 
+                                <input type="submit" name="delete_invoice"  id="<?= $invoice['invoice_id'] ?>" value="Delete" ></input>
+                            <?php } ?>
                         </td>
                     </form>
                 </tr>
@@ -120,7 +122,9 @@ $name='';
                             <? echo $contact['name']; ?> 
                         </td>
                         <td>
-                            <?  if(isset($_GET['admin'])){ echo '|'.'<input type="submit" name="delete_contact" value=" '.$contact['person_id'].' " ></input>';}; ?>
+                        <?php if(isset($_GET['admin'])){?> 
+                                <input type="submit" name="delete_invoice"  id="<?= $contact['person_id'] ?>" value="Delete" ></input>
+                            <?php } ?>
                         </td>
                     </form>
                 </tr>
@@ -150,7 +154,9 @@ $name='';
                             <? echo $company['type']; ?> 
                         </td>
                         <td>
-                            <? if(isset($_GET['admin'])){ echo '|'.'<input type="submit" name="delete_company" value=" '.$company['id_comp'].' " ></input>';}; ?>
+                        <?php if(isset($_GET['admin'])){?> 
+                                <input type="submit" name="delete_invoice"  id="<?= $company['id_comp'] ?>" value="Delete" ></input>
+                            <?php } ?>
                         </td>
                     </form>
                 </tr>

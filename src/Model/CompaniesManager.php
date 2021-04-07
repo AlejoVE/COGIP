@@ -25,6 +25,14 @@ class CompaniesManager extends Manager
         return $result;
     }
 
+    public function getLastFive()
+    {
+        $db = $this->connectDb();
+        $lastsCompanies = $db->query("SELECT * FROM companies JOIN type_of_company  ON id_type = typeId ORDER BY id_comp DESC LIMIT 0,5 ");
+        $result = $lastsCompanies->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     // public function getClients() {
     //     $db = $this->connectDb();
 

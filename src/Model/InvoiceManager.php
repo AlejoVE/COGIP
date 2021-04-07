@@ -13,4 +13,13 @@ class InvoicesManager extends Manager
             $result = $invoices->fetchAll(PDO::FETCH_ASSOC);
             return $result;
     }
+
+    public function getLastFive()
+    {
+        $db = $this->connectDb();
+        $lastInvoices = $db->query("SELECT * FROM invoices JOIN companies 
+        ON company_id = id_comp ORDER BY id_comp DESC LIMIT 0,5 ");
+        $result = $lastInvoices->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
