@@ -10,6 +10,7 @@ try {
 }
 if(isset($_POST['addInvoice'])){
     $company = intval($_POST['company_choice']);
+    echo $company;
     $contact_id = intval($_POST['contact_choice']);
     $date=date_create($_POST['date_invoice']);
     $date = date_format($date,"Ymd");
@@ -37,15 +38,15 @@ if(isset($_POST['addCompany'])){
     $req = $db->query("INSERT INTO companies (name,country,number_vta,id_type) VALUES ('$name_company', '$country', '$tva_number', '$company_type')");
 };
 //===================================Request Display Button Select=============================================================================
-$results=$db->query("SELECT id_comp,name FROM companies GROUP BY id_comp");
-$companiesNameId = $results->fetchAll();
+$results=$db->query("SELECT id_comp,name FROM companies ");
+$companiesNameId = $results->fetchAll(PDO::FETCH_ASSOC);
 //var_dump($companiesNameId);
 
-$results=$db->query("SELECT person_id,first_name, last_name FROM people");
-$contactsNameId = $results->fetchAll();
+$results=$db->query("SELECT person_id,first_name, last_name FROM people ");
+$contactsNameId = $results->fetchAll(PDO::FETCH_ASSOC);
 
 $results=$db->query("SELECT type, typeId FROM type_of_company");
-$type_choice = $results->fetchAll();
+$type_choice = $results->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php if(isset($_GET['New_Invoice'])){  ?>
@@ -55,7 +56,7 @@ $type_choice = $results->fetchAll();
                 <libellé>Company Name : </libellé>
                 <select name="company_choice">
                 <?php foreach($companiesNameId as $key => $name){  ?>
-                <option valeur="<?= $key ?>"><?php echo implode(', ',$name) ?></option>
+                <option valeur="<?= $name['id_comp'] ?>"><?php echo implode("-",$name) ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -63,7 +64,7 @@ $type_choice = $results->fetchAll();
                 <libellé>Contact Name : </libellé>
                 <select name="contact_choice">
                 <?php foreach($contactsNameId as $key => $name){  ?>
-                <option valeur="<?= $key ?>"><?php echo implode(', ',$name)?></option>
+                <option valeur="<?= $name['company_id'] ?>"><?php echo implode('-',$name)?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -99,7 +100,7 @@ $type_choice = $results->fetchAll();
                 <libellé>Company Name : </libellé>
                 <select name="company_choice">
                 <?php foreach($companiesNameId as $key => $name){  ?>
-                <option valeur="<?= $key ?>"><?php echo implode(', ',$name) ?></option>
+                <option valeur="<?= $name['id_comp'] ?>"><?php echo implode('-',$name) ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -107,7 +108,7 @@ $type_choice = $results->fetchAll();
                 <button type="submit" name='addContact'>Send</button>
             </div>
         </form>
-    <? } ?>
+    <?php } ?>
     <?php if(isset($_GET['New_Company'])){?>
         <form action="formAdd.php" method="post">
             <h4>Create a new company : </h4>
@@ -132,7 +133,7 @@ $type_choice = $results->fetchAll();
                 <libellé>Company Type : </libellé>
                 <select name="type_choice">
                 <?php foreach($type_choice as $key => $name){  ?>
-                <option valeur="<?= $key ?>"><?php echo implode(', ',$name) ?></option>
+                <option valeur="<?= $name['typeId'] ?>"><?php echo implode('-',$name) ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -140,4 +141,4 @@ $type_choice = $results->fetchAll();
                 <button type="submit" name='addCompany'>Send</button>
             </div>
         </form>
-    <? } ?>
+    <?php } ?>
