@@ -4,7 +4,7 @@
 declare(strict_types=1);
 require_once 'Manager.php';
 
-class InvoiceManager extends Manager 
+class InvoicesManager extends Manager 
 {
     public function getAllInvoices () 
     {

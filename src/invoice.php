@@ -7,7 +7,7 @@ require_once 'includes/header.php';
 require_once 'Model/InvoiceManager.php';
 
 
-$new_invoices = new InvoiceManager();
+$new_invoices = new InvoicesManager();
 $invoices = $new_invoices->getAllInvoices();
 
 echo '<strong><hr>' . 'Last invoices: '  . '<br>';
