@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2021 at 01:33 PM
+-- Generation Time: Mar 31, 2021 at 12:47 PM
 -- Server version: 8.0.13-4
 -- PHP Version: 7.2.24-0ubuntu0.18.04.7
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `nJpHWU5rJ5`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `administrators`
+--
+
+CREATE TABLE `administrators` (
+  `username` text COLLATE utf8_unicode_ci,
+  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `access` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` text COLLATE utf8_unicode_ci,
+  `last_name` text COLLATE utf8_unicode_ci,
+  `id` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `administrators`
+--
+
+INSERT INTO `administrators` (`username`, `password`, `access`, `first_name`, `last_name`, `id`) VALUES
+('Jean-christian', 'Jean-christian', 'god', 'Jean-christian', 'Lepédégé', 1),
+('Muriel', 'Muriel', 'moderator', 'Muriel', 'Lamorue', 2);
 
 -- --------------------------------------------------------
 
@@ -138,6 +161,12 @@ INSERT INTO `type_of_company` (`type_id`, `type`) VALUES
 --
 
 --
+-- Indexes for table `administrators`
+--
+ALTER TABLE `administrators`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `companies`
 --
 ALTER TABLE `companies`
@@ -168,6 +197,12 @@ ALTER TABLE `type_of_company`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `administrators`
+--
+ALTER TABLE `administrators`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `companies`
