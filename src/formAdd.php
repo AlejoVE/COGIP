@@ -22,8 +22,7 @@ if(isset($_POST['addContact'])){
     $email = $_POST['email'];
     $company = intval($_POST['company_choice']);
     //echo $company;
-    $req = $db->query("INSERT INTO people (first_name,last_name,email,company_id,phone) 
-    VALUES ('$firstName', '$lastName', '$email', '$company', '$phone')");
+    $req = $db->query("INSERT INTO people (first_name,last_name,email,company_id,phone) VALUES ('$firstName', '$lastName', '$email', '$company', '$phone')");
 };
 if(isset($_POST['addCompany'])){
     $name_company = $_POST['name'];
@@ -31,11 +30,16 @@ if(isset($_POST['addCompany'])){
     $phone = $_POST['phone'];
     $country = $_POST['country'];
     $company_type = $_POST['type_choice'];
-    $req = $db->query("INSERT INTO companies (name,country,number_vta,id_type) 
-    VALUES ('$name_company', '$country', '$tva_number', '$company_type')");
+    if ($company_type == 'client'){
+        $company_type = 2;
+    }else $company_type = 1;
+    echo $company_type;
+    $req = $db->query("INSERT INTO companies (name,country,number_vta,id_type) VALUES ('$name_company', '$country', '$tva_number', '$company_type')");
 };
-$results=$db->query("SELECT id_comp,name FROM companies");
+//===================================Request Display Button Select=============================================================================
+$results=$db->query("SELECT id_comp,name FROM companies GROUP BY id_comp");
 $companiesNameId = $results->fetchAll();
+//var_dump($companiesNameId);
 
 $results=$db->query("SELECT person_id,first_name, last_name FROM people");
 $contactsNameId = $results->fetchAll();
@@ -45,7 +49,7 @@ $type_choice = $results->fetchAll();
 ?>
 
 <?php if(isset($_GET['New_Invoice'])){  ?>
-        <form action="index.php" method="post">
+        <form action="formAdd.php" method="post">
             <h4>Create a new invoice : </h4>
             <div>
                 <libellé>Company Name : </libellé>
@@ -59,7 +63,7 @@ $type_choice = $results->fetchAll();
                 <libellé>Contact Name : </libellé>
                 <select name="contact_choice">
                 <?php foreach($contactsNameId as $key => $name){  ?>
-                <option valeur="<?= $key ?>"><?php echo implode(', ',$name) ?></option>
+                <option valeur="<?= $key ?>"><?php echo implode(', ',$name)?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -73,7 +77,7 @@ $type_choice = $results->fetchAll();
         </form>
     <?php } ?>
     <?php if(isset($_GET['New_Contact'])){?>
-        <form action="index.php" method="post">
+        <form action="formAdd.php" method="post">
             <h4>Create a new contact : </h4>
             <div>
                 <label for="lastName">Name :</label>

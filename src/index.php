@@ -64,13 +64,14 @@ $name='';
             <? echo $name .'!'; ?>
         </h3>
         <h4><? echo $message ?></h4>
-        <?php if(isset($_GET['admin'])){ ?> 
-            <?php } ?> 
+
+        <?php if(isset($_GET['admin'])){ ?>    <?php } ?> 
         <form action="formAdd.php" method="get">
             <input type='submit' name='New_Invoice' value='+ New Invoice'></input>
             <input type='submit' name='New_Contact' value='+ New Contact'></input>
             <input type='submit' name='New_Company' value='+ New Company'></input>
         </form>
+        
         <h5>Last Invoices :</h5>
         <table>
             <tr style="text-align: center;">
