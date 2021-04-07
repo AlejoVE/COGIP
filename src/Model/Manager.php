@@ -5,11 +5,13 @@ declare(strict_types=1);
 
 class Manager
 {
-	protected function connectDb()
+
+	public function connectDb()
 	{
 		try {
 			$db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
 			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			return $db;
 		} catch (Exception $error) {
 			echo $error->getMessage();
 			exit;

@@ -1,13 +1,12 @@
 <?php
 require_once 'includes/header.php';
+require_once 'Model/Manager.php';
 
-try {
-    $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
-    // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $error) {
-    echo $error->getMessage();
-    exit;
-}
+
+$database = new Manager();
+
+//database connection
+$db = $database-> connectDb();
 
 //===========================Request Last Invoices==============================================================
 $results = $db->query("SELECT * FROM invoices JOIN companies 
