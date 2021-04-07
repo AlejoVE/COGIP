@@ -30,12 +30,13 @@ if(isset($_POST['addCompany'])){
     $tva_number = $_POST['tva_number'];
     $phone = $_POST['phone'];
     $country = $_POST['country'];
-    $company_type = $_POST['type_choice'];
+    $company_type = $_POST['type_choice']; 
     $req = $db->query("INSERT INTO companies (name,country,number_vta,id_type) 
     VALUES ('$name_company', '$country', '$tva_number', '$company_type')");
 };
 $results=$db->query("SELECT id_comp,name FROM companies");
 $companiesNameId = $results->fetchAll();
+var_dump($_POST);
 
 $results=$db->query("SELECT person_id,first_name, last_name FROM people");
 $contactsNameId = $results->fetchAll();
@@ -45,18 +46,18 @@ $type_choice = $results->fetchAll();
 ?>
 
 <?php if(isset($_GET['New_Invoice'])){  ?>
-        <form action="index.php" method="post">
+        <form action="#" name="myForm" method="post">
             <h4>Create a new invoice : </h4>
             <div>
-                <libellé>Company Name : </libellé>
-                <select name="company_choice">
-                <?php foreach($companiesNameId as $key => $name){  ?>
-                <option valeur="<?= $key ?>"><?php echo implode(', ',$name) ?></option>
+                <label>Company Name : </label>
+                <select name="company_choice" onchange='myForm.submit();'>
+                <?php foreach($companiesNameId AS $company){  ?>
+                <option value="<?= $company['id_comp'] ?>"><?php echo $company['name'] ?></option>
                 <?php } ?>
                 </select>
             </div>
             <div>
-                <libellé>Contact Name : </libellé>
+                <label>Contact Name : </label>
                 <select name="contact_choice">
                 <?php foreach($contactsNameId as $key => $name){  ?>
                 <option valeur="<?= $key ?>"><?php echo implode(', ',$name) ?></option>
@@ -92,7 +93,7 @@ $type_choice = $results->fetchAll();
                 <input type="text" id="email" name="email">
             </div>
             <div>
-                <libellé>Company Name : </libellé>
+                <label>Company Name : </label>
                 <select name="company_choice">
                 <?php foreach($companiesNameId as $key => $name){  ?>
                 <option valeur="<?= $key ?>"><?php echo implode(', ',$name) ?></option>
@@ -103,7 +104,7 @@ $type_choice = $results->fetchAll();
                 <button type="submit" name='addContact'>Send</button>
             </div>
         </form>
-    <? } ?>
+        <?php } ?>
     <?php if(isset($_GET['New_Company'])){?>
         <form action="formAdd.php" method="post">
             <h4>Create a new company : </h4>
@@ -125,15 +126,14 @@ $type_choice = $results->fetchAll();
                 <input type="text" id="phone" name="phone" placeholder="xxx-xxxx">
             </div>
             <div>
-                <libellé>Company Type : </libellé>
+                <label>Company Type : </label>
                 <select name="type_choice">
-                <?php foreach($type_choice as $key => $name){  ?>
-                <option valeur="<?= $key ?>"><?php echo implode(', ',$name) ?></option>
-                <?php } ?>
+                <option value="1">Client</option>
+                <option value="2">Provider</option>
                 </select>
             </div>
             <div class="button">
                 <button type="submit" name='addCompany'>Send</button>
             </div>
         </form>
-    <? } ?>
+    <?php } ?>
