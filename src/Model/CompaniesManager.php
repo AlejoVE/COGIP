@@ -33,6 +33,22 @@ class CompaniesManager extends Manager
         return $result;
     }
 
+    public function getCompaniesNameID()
+    {
+        $db = $this->connectDb();
+        $companiesNameID = $db->query("SELECT id_comp,name FROM companies");
+        $result = $companiesNameID->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getTypeOfCompany()
+    {
+        $db = $this->connectDb();
+        $typesOfCompany = $db->query("SELECT type, typeId FROM type_of_company");
+        $result = $typesOfCompany->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     // public function getClients() {
     //     $db = $this->connectDb();
 

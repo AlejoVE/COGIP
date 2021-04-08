@@ -23,6 +23,14 @@ class ContactsManager extends Manager
         return $result;
     }
 
+    public function getContactsNameId()
+    {
+        $db = $this->connectDb();
+        $ContactsNameId = $db->query("SELECT person_id,first_name, last_name FROM people");
+        $result = $ContactsNameId->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function addContact($first_name, $last_name, $email, $company_id, $phone)
     {
         $db = $this->connectDb();

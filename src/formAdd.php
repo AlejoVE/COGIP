@@ -23,15 +23,14 @@ if(isset($_POST['addCompany'])){
     $new_company->createCompany();
 };
 
-$results=$db->query("SELECT id_comp,name FROM companies");
-$companiesNameId = $results->fetchAll();
-var_dump($_POST);
 
-$results=$db->query("SELECT person_id,first_name, last_name FROM people");
-$contactsNameId = $results->fetchAll();
+$companiesNameId = $new_company->getCompaniesNameID();
+$type_choice = $new_company->getTypeOfCompany();
 
-$results=$db->query("SELECT type, typeId FROM type_of_company");
-$type_choice = $results->fetchAll();
+
+$contactsNameId = $new_contact->getContactsNameId();
+
+
 ?>
 
 <?php if(isset($_GET['New_Invoice'])){  ?>

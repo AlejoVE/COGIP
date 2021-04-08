@@ -15,6 +15,7 @@ class ContactsController extends ContactsManager
 
         $this->addContact($first_name, $last_name, $email,  $company_id, $phone);
     }
+
     //render function with both $_GET and $_POST vars available if it would be needed.
     // public function render(array $GET, array $POST)
     // {
