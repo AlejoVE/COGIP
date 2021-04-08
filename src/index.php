@@ -43,42 +43,45 @@ $message = '';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" type="text/css" href="">
-        <title>Home</title>
-    </head>
-    <body>
-        <h1>Welcome to COGIP</h1>
-        <h4>Bonjour
-            <? echo $name .'!'; ?>
-        </h4>
-        
 
-        <?php if(isset($_GET['admin'])){ ?>   
-        <h5>Que voulez-vous faire aujourd'hui?</h5> 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="">
+    <title>Home</title>
+</head>
+
+<body>
+    <h1>Welcome to COGIP</h1>
+    <h4>Bonjour
+        <? echo $name .'!'; ?>
+    </h4>
+
+
+    <?php if (isset($_GET['admin'])) { ?>
+        <h5>Que voulez-vous faire aujourd'hui?</h5>
         <form action="formAdd.php" method="get">
             <input type='submit' name='New_Invoice' value='+ New Invoice'></input>
             <input type='submit' name='New_Contact' value='+ New Contact'></input>
             <input type='submit' name='New_Company' value='+ New Company'></input>
         </form>
-        <?php } ?>
-        
-        <h5>Last Invoices :</h5>
-        <table>
-            <tr style="text-align: center;">
-                <th>Invoice Number</th>
-                <th>Date</th>
-                <th>Company</th>
-            </tr>
-            <?php foreach ($invoices as $invoice) { ?>
+    <?php } ?>
+
+    <h5>Last Invoices :</h5>
+    <table>
+        <tr style="text-align: center;">
+            <th>Invoice Number</th>
+            <th>Date</th>
+            <th>Company</th>
+        </tr>
+        <?php foreach ($invoices as $invoice) { ?>
             <tr>
                 <form action="index.php" method="get">
-                    <td> F
-                        <? echo $invoice['invoice_date']."-".$invoice['invoice_id']; ?> |
+                    <td>
+                        <? echo  '<a href="invoiceDetail.php?code=' . $invoice['invoice_id'] . '" >'."F". $invoice['invoice_date']."-".$invoice['invoice_id']; ?>
                     </td>
                     <td>
+                        |
                         <? echo $invoice['invoice_date']; ?> |
                     </td>
                     <td>
@@ -92,7 +95,7 @@ $message = '';
                 </form>
             </tr>
         <?php } ?>
-        
+
     </table>
     <h5>Last Contacts :</h5>
     <table>
@@ -106,9 +109,10 @@ $message = '';
             <tr>
                 <form action="index.php" method="get">
                     <td>
-                        <? echo $contact['first_name']." ".$contact['last_name']; ?> |
+                        <? echo '<a href="peopleDetail.php?code=' . $contact['person_id'] . '" >'.$contact['first_name']." ".$contact['last_name']; ?>
                     </td>
                     <td>
+                        |
                         <? echo $contact['phone']; ?> |
                     </td>
                     <td>
@@ -138,9 +142,10 @@ $message = '';
             <tr>
                 <form action="index.php" method="get">
                     <td>
-                        <? echo $company['name']; ?> |
+                        <? echo '<a href="companiesDetail.php?code=' . $company['id_comp'] . '" >' . $company['name']; ?>
                     </td>
                     <td>
+                        |
                         <? echo $company['number_vta']; ?> |
                     </td>
                     <td>
