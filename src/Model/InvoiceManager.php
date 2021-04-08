@@ -22,4 +22,10 @@ class InvoicesManager extends Manager
         $result = $lastInvoices->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function addInvoice ($company, $contact_id, $date)
+    {
+        $db = $this->connectDb();
+        $db->query("INSERT INTO invoices (company_id,personId,invoice_date) VALUES ($company,$contact_id,$date)");
+    }
 }

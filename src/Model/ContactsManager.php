@@ -22,4 +22,10 @@ class ContactsManager extends Manager
         $result = $lastsContacts->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function addContact($first_name, $last_name, $email, $company_id, $phone)
+    {
+        $db = $this->connectDb();
+        $db->query("INSERT INTO people (first_name,last_name,email,company_id,phone) VALUES ('$first_name', '$last_name', '$email', '$company_id', '$phone')"); 
+    }
 }

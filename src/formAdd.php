@@ -1,29 +1,19 @@
 <?php
 require_once 'includes/header.php';
-//require('index.php');
-try {
-    $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
-    // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $error) {
-    echo $error->getMessage();
-    exit;
-}
+require_once 'Controller/InvoiceController.php';
+require_once 'Controller/ContactsController.php';
+
+$new_invoice =  new InvoiceController();
+$db = $new_invoice->connectDb();
+
+$new_contact = new ContactsController();
+
 if(isset($_POST['addInvoice'])){
-    $company = intval($_POST['company_choice']);
-    $contact_id = intval($_POST['contact_choice']);
-    $date=date_create($_POST['date_invoice']);
-    $date = date_format($date,"Ymd");
-    $req = $db->query("INSERT INTO invoices (company_id,personId,invoice_date) VALUES ($company,$contact_id,$date)");
+    $new_invoice->createInvoice();
 };
+
 if(isset($_POST['addContact'])){
-    $lastName = $_POST['lastName'];
-    $firstName = $_POST['firstName'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $company = intval($_POST['company_choice']);
-    //echo $company;
-    $req = $db->query("INSERT INTO people (first_name,last_name,email,company_id,phone) 
-    VALUES ('$firstName', '$lastName', '$email', '$company', '$phone')");
+    $new_contact->createContact();
 };
 if(isset($_POST['addCompany'])){
     $name_company = $_POST['name'];
@@ -50,7 +40,7 @@ $type_choice = $results->fetchAll();
             <h4>Create a new invoice : </h4>
             <div>
                 <label>Company Name : </label>
-                <select name="company_choice" onchange='myForm.submit();'>
+                <select name="company_choice" >
                 <?php foreach($companiesNameId AS $company){  ?>
                 <option value="<?= $company['id_comp'] ?>"><?php echo $company['name'] ?></option>
                 <?php } ?>
@@ -74,7 +64,7 @@ $type_choice = $results->fetchAll();
         </form>
     <?php } ?>
     <?php if(isset($_GET['New_Contact'])){?>
-        <form action="index.php" method="post">
+        <form action="formAdd.php" method="post">
             <h4>Create a new contact : </h4>
             <div>
                 <label for="lastName">Name :</label>
