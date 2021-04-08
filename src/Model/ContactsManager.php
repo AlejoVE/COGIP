@@ -39,6 +39,14 @@ class ContactsManager extends Manager
         return $result;
     }
 
+    public function getPeopleLinkedToCompany($company_id)
+    {
+        $db = $this->connectDb();
+        $people = $db->query("SELECT * FROM people WHERE company_id = $company_id  ORDER BY company_id ");
+        $result = $people->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function addContact($first_name, $last_name, $email, $company_id, $phone)
     {
         $db = $this->connectDb();
