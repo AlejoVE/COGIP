@@ -9,8 +9,10 @@ try {
     exit;
 }
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = htmlspecialchars($_POST['username']);
+$password = htmlspecialchars($_POST['password']);
+
+//$password = password_hash($password); to secure the password
 
 if(isset($_POST['login'])){
 
@@ -44,8 +46,13 @@ if(isset($_POST['login'])){
   
 <div class="formLogin">
     <form method="POST" action="login.php">
-        <input type="text" name="username" value="username" >: username</input>
+
+        <div class="label">Username</div>
+        <input type="text" name="username" value="username" ></input>
+
+        <div class="label">Password</div>
         <input type="password" name="password">: password</input>
+
         <input type="submit" name="login" value="login"></input>
     </form>
     <a href="index.php">BACK</a>
