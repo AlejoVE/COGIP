@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-use Becode\MVCBoilerplate\model\CompaniesManager;
+// use Becode\MVCBoilerplate\model\CompaniesManager;
 
 require_once('./Model/CompaniesManager.php');
 
