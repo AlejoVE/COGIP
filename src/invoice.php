@@ -142,10 +142,10 @@ $contacts = $new_contacts_object->getAllContacts();
             echo '<br>'; ?>
             <table>
                 <tr style="text-align: center;">
-                    <th>Invoice Number</th>
-                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Telephone</th>
+                    <th>e-mail</th>
                     <th>Company</th>
-                    <th>Type</th>
                 </tr>
 
                 <?php foreach ($contacts as $contact) { ?>
