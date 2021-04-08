@@ -9,7 +9,7 @@ require_once('Manager.php');
 class CompaniesManager extends Manager
 {
 
-    private $name;
+    // private $name;
 
     // public function __construct(string $name)
     // {
@@ -70,6 +70,12 @@ class CompaniesManager extends Manager
         $company = $req->fetch();
 
         return $company;
+    }
+
+    public function addCompany($name_company, $country, $tva_number, $company_type)
+    {
+        $db = $this->connectDb();
+        $db->query("INSERT INTO companies (name,country,number_vta,id_type) VALUES ('$name_company', '$country', '$tva_number', '$company_type')");
     }
 
 }

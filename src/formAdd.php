@@ -1,12 +1,15 @@
 <?php
 require_once 'includes/header.php';
-require_once 'Controller/InvoiceController.php';
+require_once 'Controller/InvoicesController.php';
 require_once 'Controller/ContactsController.php';
+require_once 'Controller/CompaniesController.php';
 
-$new_invoice =  new InvoiceController();
+$new_invoice =  new InvoicesController();
 $db = $new_invoice->connectDb();
 
 $new_contact = new ContactsController();
+
+$new_company = new CompaniesController();
 
 if(isset($_POST['addInvoice'])){
     $new_invoice->createInvoice();
@@ -15,15 +18,11 @@ if(isset($_POST['addInvoice'])){
 if(isset($_POST['addContact'])){
     $new_contact->createContact();
 };
+
 if(isset($_POST['addCompany'])){
-    $name_company = $_POST['name'];
-    $tva_number = $_POST['tva_number'];
-    $phone = $_POST['phone'];
-    $country = $_POST['country'];
-    $company_type = $_POST['type_choice']; 
-    $req = $db->query("INSERT INTO companies (name,country,number_vta,id_type) 
-    VALUES ('$name_company', '$country', '$tva_number', '$company_type')");
+    $new_company->createCompany();
 };
+
 $results=$db->query("SELECT id_comp,name FROM companies");
 $companiesNameId = $results->fetchAll();
 var_dump($_POST);

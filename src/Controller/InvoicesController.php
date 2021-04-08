@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-require_once './Model/InvoiceManager.php';
+require_once './Model/InvoicesManager.php';
 
-class InvoiceController extends InvoicesManager
+class InvoicesController extends InvoicesManager
 {
     public function createInvoice() 
     {

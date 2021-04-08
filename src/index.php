@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/header.php';
 require_once 'Model/Manager.php';
-require_once 'Model/InvoiceManager.php';
+require_once 'Model/InvoicesManager.php';
 require_once 'Model/ContactsManager.php';
 require_once 'Model/CompaniesManager.php';
 
