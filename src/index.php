@@ -8,17 +8,17 @@ require_once 'Model/CompaniesManager.php';
 //New instance of InvoiceManager class
 $new_invoices_object = new InvoicesManager();
 //Get lasts 5 invoices
-$invoices = $new_invoices_object-> getLastFive();
+$invoices = $new_invoices_object->getLastFive();
 
 //New instance of ContactsManager class
 $new_contacts_object = new ContactsManager();
 //Get lasts 5 contacts
-$contacts = $new_contacts_object-> getLastFive();
+$contacts = $new_contacts_object->getLastFive();
 
 //New instance of CompaniesManager class
 $new_companies_object = new CompaniesManager();
 //Get lasts 5 companies
-$companies = $new_companies_object-> getLastFive();
+$companies = $new_companies_object->getLastFive();
 
 //============================Buttons Delete=====================================================================
 if (isset($_GET['delete_invoice'])) {
@@ -91,90 +91,92 @@ $message = '';
                     </td>
                 </form>
             </tr>
-            <?php foreach ($invoices as $invoice) { ?>
-                <tr>
-                    <form action="index.php" method="get">
-                        <td> F
-                            <? echo $invoice['invoice_date']."-".$invoice['invoice_id']; ?> |
-                        </td>
-                        <td>
-                            <? echo $invoice['invoice_date']; ?> |
-                        </td>
-                        <td>
-                            <? echo $invoice['name']; ?> 
-                        </td>
-                        <td>
-                            <?php if(isset($_GET['admin'])){?> 
-                                <input type="submit" name="delete_invoice"  id="<?= $invoice['invoice_id'] ?>" value="<?= $invoice['invoice_id'] ?>" ></input>
-                            <?php } ?>
-                        </td>
-                    </form>
-                </tr>
-            <?php } ?>
-        </table>
-        <h5>Last Contacts :</h5>
-        <table>
-            <tr style="text-align: center;">
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Company</th>
+        <?php } ?>
+        <?php foreach ($invoices as $invoice) { ?>
+            <tr>
+                <form action="index.php" method="get">
+                    <td> F
+                        <? echo $invoice['invoice_date']."-".$invoice['invoice_id']; ?> |
+                    </td>
+                    <td>
+                        <? echo $invoice['invoice_date']; ?> |
+                    </td>
+                    <td>
+                        <? echo $invoice['name']; ?>
+                    </td>
+                    <td>
+                        <?php if (isset($_GET['admin'])) { ?>
+                            <input type="submit" name="delete_invoice" id="<?= $invoice['invoice_id'] ?>" value="<?= $invoice['invoice_id'] ?>"></input>
+                        <?php } ?>
+                    </td>
+                </form>
             </tr>
-            <?php foreach ($contacts as $contact) { ?>
-                <tr>
-                    <form action="index.php" method="get">
-                        <td> 
-                            <? echo $contact['first_name']." ".$contact['last_name']; ?> |
-                        </td>
-                        <td>
-                            <? echo $contact['phone']; ?> |
-                        </td>
-                        <td>
-                            <? echo $contact['email']; ?> |
-                        </td>
-                        <td>
-                            <? echo $contact['name']; ?> 
-                        </td>
-                        <td>
-                        <?php if(isset($_GET['admin'])){?> 
-                                <input type="submit" name="delete_contact"  id="<?= $contact['person_id'] ?>" value="<?= $contact['person_id'] ?>" ></input>
-                            <?php } ?>
-                        </td>
-                    </form>
-                </tr>
-            <?php } ?>
-        </table>
-        <h5>Last Companies :</h5>
-        <table>
-            <tr style="text-align: center;">
-                <th>Name |</th>
-                <th>TVA |</th>
-                <th>Country |</th>
-                <th>Type |</th>
+        <?php } ?>
+    </table>
+    <h5>Last Contacts :</h5>
+    <table>
+        <tr style="text-align: center;">
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Company</th>
+        </tr>
+        <?php foreach ($contacts as $contact) { ?>
+            <tr>
+                <form action="index.php" method="get">
+                    <td>
+                        <? echo $contact['first_name']." ".$contact['last_name']; ?> |
+                    </td>
+                    <td>
+                        <? echo $contact['phone']; ?> |
+                    </td>
+                    <td>
+                        <? echo $contact['email']; ?> |
+                    </td>
+                    <td>
+                        <? echo $contact['name']; ?>
+                    </td>
+                    <td>
+                        <?php if (isset($_GET['admin'])) { ?>
+                            <input type="submit" name="delete_contact" id="<?= $contact['person_id'] ?>" value="<?= $contact['person_id'] ?>"></input>
+                        <?php } ?>
+                    </td>
+                </form>
             </tr>
-            <?php foreach ($companies as $company) { ?>
-                <tr>
-                    <form action="index.php" method="get">
-                        <td> 
-                            <? echo $company['name']; ?> |
-                        </td>
-                        <td>
-                            <? echo $company['number_vta']; ?> |
-                        </td>
-                        <td>
-                            <? echo $company['country']; ?> |
-                        </td>
-                        <td>
-                            <? echo $company['type']; ?> 
-                        </td>
-                        <td>
-                        <?php if(isset($_GET['admin'])){?> 
-                                <input type="submit" name="delete_company"  id="<?= $company['id_comp'] ?>" value="<?= $company['id_comp'] ?>" ></input>
-                            <?php } ?>
-                        </td>
-                    </form>
-                </tr>
-            <?php } ?>
-        </table>
-    </body>
+        <?php } ?>
+    </table>
+    <h5>Last Companies :</h5>
+    <table>
+        <tr style="text-align: center;">
+            <th>Name |</th>
+            <th>TVA |</th>
+            <th>Country |</th>
+            <th>Type |</th>
+        </tr>
+        <?php foreach ($companies as $company) { ?>
+            <tr>
+                <form action="index.php" method="get">
+                    <td>
+                        <? echo $company['name']; ?> |
+                    </td>
+                    <td>
+                        <? echo $company['number_vta']; ?> |
+                    </td>
+                    <td>
+                        <? echo $company['country']; ?> |
+                    </td>
+                    <td>
+                        <? echo $company['type']; ?>
+                    </td>
+                    <td>
+                        <?php if (isset($_GET['admin'])) { ?>
+                            <input type="submit" name="delete_company" id="<?= $company['id_comp'] ?>" value="<?= $company['id_comp'] ?>"></input>
+                        <?php } ?>
+                    </td>
+                </form>
+            </tr>
+        <?php } ?>
+    </table>
+</body>
+
 </html>
