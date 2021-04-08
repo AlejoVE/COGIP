@@ -16,7 +16,7 @@ class CompaniesManager extends Manager
     //     $this->name = $name;
     // }
 
-    public function getCompanies($type) 
+    public function getCompanies($type)
     {
         $db = $this->connectDb();
 
@@ -32,6 +32,9 @@ class CompaniesManager extends Manager
         $result = $lastsCompanies->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+
+
 
     public function getCompaniesNameID()
     {
@@ -60,7 +63,7 @@ class CompaniesManager extends Manager
     //To display all the companies
     // public function getCompanies()
     // {
-        
+
     //     $db = $this->connectDb();
 
     //     $req = $db->query('SELECT ... AS ... 
@@ -101,5 +104,4 @@ class CompaniesManager extends Manager
         $db->query("DELETE FROM people WHERE company_id= $company_id");
         $db->query("DELETE FROM companies WHERE id_comp= $company_id");
     }
-
 }
