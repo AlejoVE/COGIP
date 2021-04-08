@@ -74,24 +74,7 @@ $message = '';
             <th>Date</th>
             <th>Company</th>
         </tr>
-        <?php foreach ($invoices as $invoice) { ?>
-            <tr>
-                <form action="index.php" method="get">
-                    <td> F
-                        <? echo $invoice['invoice_date']."-".$invoice['invoice_id']; ?> |
-                    </td>
-                    <td>
-                        <? echo $invoice['invoice_date']; ?> |
-                    </td>
-                    <td>
-                        <? echo $invoice['name']; ?>
-                    </td>
-                    <td>
-                        <? if(isset($_GET['admin'])){ echo '|'.'<input type="submit" name="delete_invoice" value=" '.$invoice['invoice_id'].'" ></input>';}; ?>
-                    </td>
-                </form>
-            </tr>
-        <?php } ?>
+
         <?php foreach ($invoices as $invoice) { ?>
             <tr>
                 <form action="index.php" method="get">

@@ -11,38 +11,43 @@
 </head>
 
 <body>
-  <header>
-    <h1 style="text-align: center;"></h1>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand"><img src="includes/img/cogip-logo.jpeg" alt="logocogip" width="60px" /></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="invoice.php">Invoices</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="companies.php">Companies</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contacts.php">Contacts</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="login.php" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Connexion
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Admin</a>
-              <a class="dropdown-item" href="#">Moderateur</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+  <form action='invoice.php' method='GET'>
+    <header>
+      <h1 style="text-align: center;"></h1>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand"><img src="includes/img/cogip-logo.jpeg" alt="logocogip" width="60px" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" name="Invoice" href="invoice.php">Invoices</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" name="Companies" href="invoice.php">Companies</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" name="Contacts" href="invoice.php">Contacts</button>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="login.php" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Connexion
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Admin</a>
+                <a class="dropdown-item" href="#">Moderateur</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+  </form>
+</body>
+
+</html>

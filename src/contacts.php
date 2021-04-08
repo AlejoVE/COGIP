@@ -29,3 +29,50 @@ echo '<br>';
 //     //var_dump($product['productCode']);
 //     echo '<li><a href="product.php?code='. $product['person_id'].'" >'.$product['first_name']." ".$product['last_name'].'</a></li>';
 // }
+
+?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="">
+    <title>Home</title>
+</head>
+
+<body>
+
+
+    <table>
+        <tr style="text-align: center;">
+            <th>Name</th>
+            <th>Telephone</th>
+            <th>e-mail</th>
+            <th>Company</th>
+        </tr>
+
+        <?php foreach ($contacts as $contact) { ?>
+            <tr>
+                <form action="index.php" method="get">
+                    <td>
+                        <? echo '<a href="peopleDetail.php?code=' . $contact['person_id'] . '" >'.$contact['first_name']." ".$contact['last_name']; ?>
+                    </td>
+                    <td>
+                        |
+                        <? echo $contact['phone']; ?> |
+                    </td>
+                    <td>
+                        <? echo $contact['email']; ?> |
+                    </td>
+                    <td>
+                        <? echo $contact['name']; ?>
+                    </td>
+
+                </form>
+            </tr>
+        <?php } ?>
+
+</body>
+
+</html>
