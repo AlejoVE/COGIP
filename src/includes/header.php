@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<form action="invoice.php" method="get">
   <header>
     <h1 style="text-align: center;"></h1>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,16 +22,16 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="index.php">Home</a>
+            <a class="nav-link"  href="#">Home</<a name="" id="" class="btn btn-primary" href="#" role="button"></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="invoice.php">Invoices</a>
+            <button class="nav-link" name='invoice' href="#">Invoices</button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="companies.php">Companies</a>
+            <button class="nav-link" name='companies' href="#">Companies</button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contacts.php">Contacts</a>
+            <button class="nav-link" name='contacts' href="#">Contacts</button>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="login.php" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,3 +47,4 @@
       </div>
     </nav>
   </header>
+  </form>

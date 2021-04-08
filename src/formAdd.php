@@ -13,14 +13,20 @@ $new_company = new CompaniesController();
 
 if(isset($_POST['addInvoice'])){
     $new_invoice->createInvoice();
+    echo "<p>Success!! <br> The invoice has been sended</p>";
+    echo "<a href='index.php'>Back</a>";
 };
 
 if(isset($_POST['addContact'])){
     $new_contact->createContact();
+    echo "<p>Success!! <br> The contact has been sended</p>";
+    echo "<a href='index.php'>Back</a>";
 };
 
 if(isset($_POST['addCompany'])){
     $new_company->createCompany();
+    echo "<p>Success!! <br> The company has been sended</p>";
+    echo "<a href='index.php'>Back</a>";
 };
 
 
@@ -48,7 +54,7 @@ $contactsNameId = $new_contact->getContactsNameId();
                 <label>Contact Name : </label>
                 <select name="contact_choice">
                 <?php foreach($contactsNameId as $key => $name){  ?>
-                    <option value="<?= $name['person_id'] ?>"><?php echo implode(', ',$name) ?></option>
+                    <option value="<?= $name['person_id'] ?>"><?php echo $name['first_name']." ".$name['last_name'] ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -61,6 +67,7 @@ $contactsNameId = $new_contact->getContactsNameId();
             </div>
         </form>
     <?php } ?>
+    
     <?php if(isset($_GET['New_Contact'])){?>
         <form action="formAdd.php" method="post">
             <h4>Create a new contact : </h4>
@@ -84,7 +91,7 @@ $contactsNameId = $new_contact->getContactsNameId();
                 <label>Company Name : </label>
                 <select name="company_choice">
                 <?php foreach($companiesNameId as $key => $name){  ?>
-                <option value="<?= $name['id_comp'] ?>"><?php echo implode('-',$name) ?></option>
+                <option value="<?= $name['id_comp'] ?>"><?php echo $name['name'] ?></option>
                 <?php } ?>
                 </select>
             </div>

@@ -51,17 +51,19 @@ $name='';
     </head>
     <body>
         <h1>Welcome to COGIP</h1>
-        <h3>Bonjour
+        <h4>Bonjour
             <? echo $name .'!'; ?>
-        </h3>
-        <h4><? echo $message ?></h4>
+        </h4>
+        
 
-        <?php if(isset($_GET['admin'])){ ?>    <?php } ?> 
+        <?php if(isset($_GET['admin'])){ ?>   
+        <h5>Que voulez-vous faire aujourd'hui?</h5> 
         <form action="formAdd.php" method="get">
             <input type='submit' name='New_Invoice' value='+ New Invoice'></input>
             <input type='submit' name='New_Contact' value='+ New Contact'></input>
             <input type='submit' name='New_Company' value='+ New Company'></input>
         </form>
+        <?php } ?>
         
         <h5>Last Invoices :</h5>
         <table>
