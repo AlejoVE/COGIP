@@ -1,70 +1,54 @@
 <?php
 require_once 'includes/header.php';
-//require('index.php');
-try {
-    $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
-    // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $error) {
-    echo $error->getMessage();
-    exit;
-}
+require_once 'Controller/InvoicesController.php';
+require_once 'Controller/ContactsController.php';
+require_once 'Controller/CompaniesController.php';
+
+$new_invoice =  new InvoicesController();
+$db = $new_invoice->connectDb();
+
+$new_contact = new ContactsController();
+
+$new_company = new CompaniesController();
+
 if(isset($_POST['addInvoice'])){
-    $company = intval($_POST['company_choice']);
-    echo $company;
-    $contact_id = intval($_POST['contact_choice']);
-    $date=date_create($_POST['date_invoice']);
-    $date = date_format($date,"Ymd");
-    $req = $db->query("INSERT INTO invoices (company_id,personId,invoice_date) VALUES ($company,$contact_id,$date)");
+    $new_invoice->createInvoice();
 };
+
 if(isset($_POST['addContact'])){
-    $lastName = $_POST['lastName'];
-    $firstName = $_POST['firstName'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $company = intval($_POST['company_choice']);
-    //echo $company;
-    $req = $db->query("INSERT INTO people (first_name,last_name,email,company_id,phone) VALUES ('$firstName', '$lastName', '$email', '$company', '$phone')");
+    $new_contact->createContact();
 };
+
 if(isset($_POST['addCompany'])){
-    $name_company = $_POST['name'];
-    $tva_number = $_POST['tva_number'];
-    $phone = $_POST['phone'];
-    $country = $_POST['country'];
-    $company_type = $_POST['type_choice'];
-    if ($company_type == 'client'){
-        $company_type = 2;
-    }else $company_type = 1;
-    echo $company_type;
-    $req = $db->query("INSERT INTO companies (name,country,number_vta,id_type) VALUES ('$name_company', '$country', '$tva_number', '$company_type')");
+    $new_company->createCompany();
 };
-//===================================Request Display Button Select=============================================================================
-$results=$db->query("SELECT id_comp,name FROM companies ");
-$companiesNameId = $results->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($companiesNameId);
 
-$results=$db->query("SELECT person_id,first_name, last_name FROM people ");
-$contactsNameId = $results->fetchAll(PDO::FETCH_ASSOC);
 
-$results=$db->query("SELECT type, typeId FROM type_of_company");
-$type_choice = $results->fetchAll(PDO::FETCH_ASSOC);
+$companiesNameId = $new_company->getCompaniesNameID();
+$type_choice = $new_company->getTypeOfCompany();
+
+
+$contactsNameId = $new_contact->getContactsNameId();
+
+
 ?>
 
 <?php if(isset($_GET['New_Invoice'])){  ?>
-        <form action="formAdd.php" method="post">
+        <form action="#" name="myForm" method="post">
             <h4>Create a new invoice : </h4>
             <div>
-                <libellé>Company Name : </libellé>
-                <select name="company_choice">
-                <?php foreach($companiesNameId as $key => $name){  ?>
-                <option valeur="<?= $name['id_comp'] ?>"><?php echo implode("-",$name) ?></option>
+                <label>Company Name : </label>
+                <select name="company_choice" >
+                <?php foreach($companiesNameId AS $company){  ?>
+                <option value="<?= $company['id_comp'] ?>"><?php echo $company['name'] ?></option>
                 <?php } ?>
                 </select>
             </div>
             <div>
-                <libellé>Contact Name : </libellé>
+                <label>Contact Name : </label>
                 <select name="contact_choice">
                 <?php foreach($contactsNameId as $key => $name){  ?>
-                <option valeur="<?= $name['company_id'] ?>"><?php echo implode('-',$name)?></option>
+                    <option value="<?= $name['person_id'] ?>"><?php echo implode(', ',$name) ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -97,10 +81,10 @@ $type_choice = $results->fetchAll(PDO::FETCH_ASSOC);
                 <input type="text" id="email" name="email">
             </div>
             <div>
-                <libellé>Company Name : </libellé>
+                <label>Company Name : </label>
                 <select name="company_choice">
                 <?php foreach($companiesNameId as $key => $name){  ?>
-                <option valeur="<?= $name['id_comp'] ?>"><?php echo implode('-',$name) ?></option>
+                <option value="<?= $name['id_comp'] ?>"><?php echo implode('-',$name) ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -108,7 +92,7 @@ $type_choice = $results->fetchAll(PDO::FETCH_ASSOC);
                 <button type="submit" name='addContact'>Send</button>
             </div>
         </form>
-    <?php } ?>
+        <?php } ?>
     <?php if(isset($_GET['New_Company'])){?>
         <form action="formAdd.php" method="post">
             <h4>Create a new company : </h4>
@@ -130,11 +114,10 @@ $type_choice = $results->fetchAll(PDO::FETCH_ASSOC);
                 <input type="text" id="phone" name="phone" placeholder="xxx-xxxx">
             </div>
             <div>
-                <libellé>Company Type : </libellé>
+                <label>Company Type : </label>
                 <select name="type_choice">
-                <?php foreach($type_choice as $key => $name){  ?>
-                <option valeur="<?= $name['typeId'] ?>"><?php echo implode('-',$name) ?></option>
-                <?php } ?>
+                <option value="1">Client</option>
+                <option value="2">Provider</option>
                 </select>
             </div>
             <div class="button">

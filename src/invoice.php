@@ -4,25 +4,21 @@
 // Ajouter header
 
 require_once 'includes/header.php';
+require_once 'Model/InvoicesManager.php';
 
-try {
-    $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
-    // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $error) {
-    echo $error->getMessage();
-    exit;
-}
 
-$results = $db->query("SELECT * FROM invoices JOIN companies ON company_id = id_comp JOIN type_of_company ON id_type = typeId ");
+$new_invoices = new InvoicesManager();
+$invoices = $new_invoices->getAllInvoices();
 
 echo '<strong><hr>' . 'Last invoices: '  . '<br>';
 
-while ($donnees = $results->fetch()) {
-    $date = $donnees['invoice_date'];
-    $strY = substr($date, 0, 4);
-    $strM = substr($date, 5, -3);
-    $strD = substr($date, 8, 9);
 
-    echo '<a href="invoiceDetail.php?code=' . $donnees['invoice_id'] . '" >' . "F" . $strY . $strM . $strD . "-" . $donnees['invoice_id'] . '</a>' .  " | " . $strD . "/" . $strM . "/" . $strY .  " | " . $donnees['name'] . " | " . $donnees['type'] . '<br>';
-}
-$results->closeCursor();
+// while ($invoices == true) {
+//     $date = $invoices['invoice_date'];
+//     $strY = substr($date, 0, 4);
+//     $strM = substr($date, 5, -3);
+//     $strD = substr($date, 8, 9);
+
+//     echo '<a href="invoiceDetail.php?code=' . $invoices['invoice_id'] . '" >' . "F" . $strY . $strM . $strD . "-" . $invoices['invoice_id'] . '</a>' .  " | " . $strD . "/" . $strM . "/" . $strY .  " | " . $invoices['name'] . " | " . $invoices['type'] . '<br>';
+// }
+// $results->closeCursor();
