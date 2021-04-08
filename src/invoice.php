@@ -4,7 +4,7 @@
 // Ajouter header
 
 require_once 'includes/header.php';
-require_once 'Model/InvoiceManager.php';
+require_once 'Model/InvoicesManager.php';
 
 
 $new_invoices = new InvoicesManager();

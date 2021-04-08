@@ -36,4 +36,11 @@ class ContactsManager extends Manager
         $db = $this->connectDb();
         $db->query("INSERT INTO people (first_name,last_name,email,company_id,phone) VALUES ('$first_name', '$last_name', '$email', '$company_id', '$phone')"); 
     }
+
+    public function deleteContact($contact_id)
+    {
+        $db = $this->connectDb();
+        $req = $db->query("DELETE FROM people WHERE person_id = $contact_id");
+        $req->bindParam(':person_id', $contact_id, PDO::PARAM_INT);
+    }
 }

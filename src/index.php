@@ -23,25 +23,17 @@ $companies = $new_companies_object-> getLastFive();
 //============================Buttons Delete=====================================================================
 if(isset($_GET['delete_invoice'])){
     $invoice_id = $_GET['delete_invoice'];
-    $req = $db->query("DELETE FROM invoices WHERE invoice_id = $invoice_id");
-    $req->bindParam(':invoice_id', $invoice_id, PDO::PARAM_INT);
-    //$req->execute();
+    $new_invoices_object->deleteInvoice($invoice_id);
     echo 'The invoice has been deleted';
 }
 if(isset($_GET['delete_contact'])){
     $contact_id = $_GET['delete_contact'];
-    $req = $db->query("DELETE FROM people WHERE person_id = $contact_id");
-    $req->bindParam(':person_id', $contact_id, PDO::PARAM_INT);
-    //$req->execute();
+    $new_contacts_object->deleteContact($contact_id);
     echo 'The contact has been deleted';
 }
 if(isset($_GET['delete_company'])){
     $company_id = $_GET['delete_company'];
-    $req1 = $db->query("DELETE FROM invoices WHERE company_id= $company_id");
-    $req2 = $db->query("DELETE FROM people WHERE company_id= $company_id");
-    $req3 = $db->query("DELETE FROM companies WHERE id_comp= $company_id");
-    //$req->bindParam(':id_comp', $company_id, PDO::PARAM_INT);
-    //$req->execute();
+    $new_companies_object->deleteCompany($company_id);
     echo 'The company has been deleted';
 }
 //======================================Variables============================================================
@@ -91,7 +83,7 @@ $name='';
                         </td>
                         <td>
                             <?php if(isset($_GET['admin'])){?> 
-                                <input type="submit" name="delete_invoice"  id="<?= $invoice['invoice_id'] ?>" value="Delete" ></input>
+                                <input type="submit" name="delete_invoice"  id="<?= $invoice['invoice_id'] ?>" value="<?= $invoice['invoice_id'] ?>" ></input>
                             <?php } ?>
                         </td>
                     </form>
@@ -123,7 +115,7 @@ $name='';
                         </td>
                         <td>
                         <?php if(isset($_GET['admin'])){?> 
-                                <input type="submit" name="delete_invoice"  id="<?= $contact['person_id'] ?>" value="Delete" ></input>
+                                <input type="submit" name="delete_contact"  id="<?= $contact['person_id'] ?>" value="<?= $contact['person_id'] ?>" ></input>
                             <?php } ?>
                         </td>
                     </form>
@@ -155,7 +147,7 @@ $name='';
                         </td>
                         <td>
                         <?php if(isset($_GET['admin'])){?> 
-                                <input type="submit" name="delete_invoice"  id="<?= $company['id_comp'] ?>" value="Delete" ></input>
+                                <input type="submit" name="delete_company"  id="<?= $company['id_comp'] ?>" value="<?= $company['id_comp'] ?>" ></input>
                             <?php } ?>
                         </td>
                     </form>

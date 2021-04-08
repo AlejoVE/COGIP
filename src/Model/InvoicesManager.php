@@ -28,4 +28,11 @@ class InvoicesManager extends Manager
         $db = $this->connectDb();
         $db->query("INSERT INTO invoices (company_id,personId,invoice_date) VALUES ($company,$contact_id,$date)");
     }
+
+    public function deleteInvoice($invoice_id)
+    {
+        $db = $this->connectDb();
+        $req = $db->query("DELETE FROM invoices WHERE invoice_id = $invoice_id");
+        $req->bindParam(':invoice_id', $invoice_id, PDO::PARAM_INT);
+    }
 }

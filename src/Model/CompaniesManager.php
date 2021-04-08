@@ -94,4 +94,12 @@ class CompaniesManager extends Manager
         $db->query("INSERT INTO companies (name,country,number_vta,id_type) VALUES ('$name_company', '$country', '$tva_number', '$company_type')");
     }
 
+    public function deleteCompany($company_id)
+    {
+        $db = $this->connectDb();
+        $db->query("DELETE FROM invoices WHERE company_id= $company_id");
+        $db->query("DELETE FROM people WHERE company_id= $company_id");
+        $db->query("DELETE FROM companies WHERE id_comp= $company_id");
+    }
+
 }
