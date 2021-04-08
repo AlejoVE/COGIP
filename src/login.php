@@ -3,17 +3,18 @@ session_start();
 
 try {
     $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
-    //$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $error) {
     echo $error->getMessage();
     exit;
 }
 
+$username = $_POST['username'];
+$password = $_POST['password'];
 
 if(isset($_POST['login'])){
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    
 
 }
 //------------------when the correct code is done--------------------------------------------------------------
