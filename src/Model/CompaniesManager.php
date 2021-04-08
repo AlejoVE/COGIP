@@ -33,9 +33,6 @@ class CompaniesManager extends Manager
         return $result;
     }
 
-
-
-
     public function getCompaniesNameID()
     {
         $db = $this->connectDb();
@@ -49,6 +46,14 @@ class CompaniesManager extends Manager
         $db = $this->connectDb();
         $typesOfCompany = $db->query("SELECT type, typeId FROM type_of_company");
         $result = $typesOfCompany->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getCompanyById($id)
+    {
+        $db = $this->connectDb();
+        $company = $db->query("SELECT * FROM companies JOIN type_of_company ON id_type = typeId WHERE id_comp = $id  ORDER BY id_comp ");
+        $result =$company->fetch();
         return $result;
     }
 

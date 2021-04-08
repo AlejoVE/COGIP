@@ -23,6 +23,29 @@ class InvoicesManager extends Manager
         return $result;
     }
 
+    public function getInvoice($code)
+    {
+        $db = $this->connectDb();
+        try {
+            $results = $db->prepare(
+                "SELECT *
+                FROM invoices
+                 
+                 # The question mark instead of the ID
+                 WHERE invoice_id=?"
+            );
+            //To bind the id variable to the first question mark. 
+            $results->bindParam(1, $code, PDO::PARAM_STR);
+            //To execute the query set into results object
+            $results->execute();
+            $product = $results->fetch(PDO::FETCH_ASSOC);
+            return $product;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
     public function addInvoice ($company, $contact_id, $date)
     {
         $db = $this->connectDb();

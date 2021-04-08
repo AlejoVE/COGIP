@@ -31,6 +31,14 @@ class ContactsManager extends Manager
         return $result;
     }
 
+    public function getPersonLinkedToInvoice($invoice_id)
+    {
+        $db = $this->connectDb();
+        $person = $db->query("SELECT * FROM people as p JOIN invoices as i ON p.company_id = i.company_id  WHERE  invoice_id = $invoice_id AND p.person_id = i.personId");
+        $result = $person->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function addContact($first_name, $last_name, $email, $company_id, $phone)
     {
         $db = $this->connectDb();
