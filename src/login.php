@@ -7,7 +7,7 @@ $new_administrators_object = new AdministratorsManager();
 $administrators = $new_administrators_object->getAllAdministrators();
 $_SESSION['name'] = " ";
 $connect = 0;
-echo $connect;
+
 
 if (isset($_POST['login'])) {
 
@@ -22,8 +22,8 @@ if (isset($_POST['login'])) {
             $_SESSION['access'] = $access;
             $_SESSION['name'] = $nameConnect;
             //echo $nameConnect . " " . $access;
-            echo $_SESSION['access'];
-            echo $_SESSION['name'];
+            // echo $_SESSION['access'];
+            // echo $_SESSION['name'];
             $connect = 1;
         };
     };

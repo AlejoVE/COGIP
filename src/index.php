@@ -43,7 +43,7 @@ if (isset($_GET['delete_company'])) {
 }
 //======================================Variables============================================================
 $name = '';
-$message = '';
+
 
 ?>
 <!DOCTYPE html>
@@ -80,6 +80,7 @@ $message = '';
             <th>Invoice Number</th>
             <th>Date</th>
             <th>Company</th>
+            <th></th>
         </tr>
         <?php foreach ($invoices as $invoice) { ?>
             <tr>
@@ -96,7 +97,11 @@ $message = '';
                     </td>
                     <td>
                         <?php if (isset($_SESSION["access"]) && $_SESSION["access"] == "god") { ?>
-                            <input type="submit" name="delete_invoice" id="<?= $invoice['invoice_id'] ?>" value="<?= $invoice['invoice_id'] ?>"></input>
+                            <input type="submit"
+                            name="delete_invoice" 
+                            id="<?= $invoice['invoice_id'] ?>" 
+                            value="<?= $invoice['invoice_id'] ?>">
+                            </input>
                         <?php } ?>
                     </td>
                 </form>
@@ -111,6 +116,7 @@ $message = '';
             <th>Phone</th>
             <th>Email</th>
             <th>Company</th>
+            <th> </th>
         </tr>
         <?php foreach ($contacts as $contact) { ?>
             <tr>
@@ -130,7 +136,11 @@ $message = '';
                     </td>
                     <td>
                         <?php if (isset($_SESSION["access"]) && $_SESSION["access"] == "god") { ?>
-                            <input type="submit" name="delete_contact" id="<?= $contact['person_id'] ?>" value="<?= $contact['person_id'] ?>"></input>
+                            <input type="submit" 
+                            name="delete_contact" 
+                            id="<?= $contact['person_id'] ?>"
+                            value="<?php if(  $contact['person_id'] < 10){ echo '0'. $contact['person_id'];}else echo  $contact['person_id'] ; ?>">
+                            </input>
                         <?php } ?>
                     </td>
                 </form>
@@ -144,6 +154,7 @@ $message = '';
             <th>TVA </th>
             <th>Country </th>
             <th>Type </th>
+            <th> </th>
         </tr>
         <?php foreach ($companies as $company) { ?>
             <tr>
@@ -163,7 +174,11 @@ $message = '';
                     </td>
                     <td>
                         <?php if (isset($_SESSION["access"]) && $_SESSION["access"] == "god") { ?>
-                            <input type="submit" name="delete_company" id="<?= $company['id_comp'] ?>" value="<?= $company['id_comp'] ?>"></input>
+                            <input type="submit" 
+                            name="delete_company" 
+                            id="<?= $company['id_comp'] ?>"
+                            value="<?php if( $company['id_comp'] < 10){ echo '0'.$company['id_comp'];}else echo $company['id_comp'] ; ?>">
+                            </input>
                         <?php } ?>
                     </td>
                 </form>
