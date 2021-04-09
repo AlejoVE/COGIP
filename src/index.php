@@ -1,7 +1,8 @@
 <?php
-
+ini_set('display_errors', 'off'); // cache le warning de la variable $_SESSION['name'] qui n'est pas déclarée avant d'avoir été dans le login non déclarée
 session_start();
 //echo $_SESSION["access"];
+
 
 
 require_once 'includes/header.php';
