@@ -5,7 +5,7 @@ require_once 'Model/LoginManager.php';
 
 $new_administrators_object = new AdministratorsManager();
 $administrators = $new_administrators_object->getAllAdministrators();
-$_SESSION['name'] = " ";
+
 
 
 
