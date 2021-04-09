@@ -1,4 +1,9 @@
 <?php
+
+session_start();
+//echo $_SESSION["access"];
+
+
 require_once 'includes/header.php';
 require_once 'Model/Manager.php';
 require_once 'Model/InvoicesManager.php';
@@ -54,11 +59,11 @@ $message = '';
 <body>
     <h1>Welcome to COGIP</h1>
     <h4>Bonjour
-        <? echo $name .'!'; ?>
+        <? echo $_SESSION["name"] .'!'; ?>
     </h4>
 
 
-    <?php if (isset($_GET['admin'])) { ?>
+    <?php if (isset($_SESSION["access"]) && ($_SESSION["access"] == "god" || $_SESSION["access"] == "moderator")) { ?>
         <h5>Que voulez-vous faire aujourd'hui?</h5>
         <form action="formAdd.php" method="get">
             <input type='submit' name='New_Invoice' value='+ New Invoice'></input>
@@ -88,7 +93,7 @@ $message = '';
                         <? echo $invoice['name']; ?>
                     </td>
                     <td>
-                        <?php if (isset($_GET['admin'])) { ?>
+                        <?php if (isset($_SESSION["access"]) && $_SESSION["access"] == "god") { ?>
                             <input type="submit" name="delete_invoice" id="<?= $invoice['invoice_id'] ?>" value="<?= $invoice['invoice_id'] ?>"></input>
                         <?php } ?>
                     </td>
@@ -122,7 +127,7 @@ $message = '';
                         <? echo $contact['name']; ?>
                     </td>
                     <td>
-                        <?php if (isset($_GET['admin'])) { ?>
+                        <?php if (isset($_SESSION["access"]) && $_SESSION["access"] == "god") { ?>
                             <input type="submit" name="delete_contact" id="<?= $contact['person_id'] ?>" value="<?= $contact['person_id'] ?>"></input>
                         <?php } ?>
                     </td>
@@ -155,7 +160,7 @@ $message = '';
                         <? echo $company['type']; ?>
                     </td>
                     <td>
-                        <?php if (isset($_GET['admin'])) { ?>
+                        <?php if (isset($_SESSION["access"]) && $_SESSION["access"] == "god") { ?>
                             <input type="submit" name="delete_company" id="<?= $company['id_comp'] ?>" value="<?= $company['id_comp'] ?>"></input>
                         <?php } ?>
                     </td>
