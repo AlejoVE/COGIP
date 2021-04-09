@@ -4,6 +4,15 @@ body{
     background-repeat: repeat-y;
     height: 100vh;
 }
+
+h1{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #036353;
+
+}
+
 h5{
     padding-top:46px ;
     padding-bottom:16px ;
@@ -12,7 +21,21 @@ h5{
 }
 table{
     text-align: center;
+    width: 75%;
+    table-layout: auto;
+    
 }
+
+th{
+
+    background-color: #036353;
+    color:#0ddfaa;
+
+}
+// td{
+    
+
+// }
 
 footer{
     padding-top: 60px;
