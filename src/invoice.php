@@ -12,7 +12,6 @@ $new_object_companies = new CompaniesManager();
 $suppliers = $new_object_companies->getCompanies(1);
 $clients = $new_object_companies->getCompanies(2);
 
-
 $new_invoices = new InvoicesManager();
 $invoices = $new_invoices->getAllInvoices();
 

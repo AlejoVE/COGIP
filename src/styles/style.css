@@ -1,1 +1,16 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+h5 {
+  padding-top: 46px;
+  padding-bottom: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+table {
+  text-align: center;
+}
+
+footer {
+  padding-top: 60px;
+  background-color: #036353;
+}
+/*# sourceMappingURL=style.css.map */

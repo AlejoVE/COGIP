@@ -23,11 +23,50 @@ class ContactsManager extends Manager
         return $result;
     }
 
+    public function getPersonByIdWithCompany($person_id)
+    {
+        $db = $this->connectDb();
+        try {
+            $results = $db->prepare(
+                "SELECT *
+                FROM people
+                JOIN companies
+                ON company_id = id_comp
+                WHERE person_id=?"
+            );
+            //To bind the id variable to the first question mark. 
+            $results->bindParam(1, $person_id, PDO::PARAM_STR);
+            //To execute the query set into results object
+            $results->execute();
+            $person = $results->fetch(PDO::FETCH_ASSOC);
+            return $person;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
     public function getContactsNameId()
     {
         $db = $this->connectDb();
         $ContactsNameId = $db->query("SELECT person_id,first_name, last_name FROM people");
         $result = $ContactsNameId->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getPersonLinkedToInvoice($invoice_id)
+    {
+        $db = $this->connectDb();
+        $person = $db->query("SELECT * FROM people as p JOIN invoices as i ON p.company_id = i.company_id  WHERE  invoice_id = $invoice_id AND p.person_id = i.personId");
+        $result = $person->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getPeopleLinkedToCompany($company_id)
+    {
+        $db = $this->connectDb();
+        $people = $db->query("SELECT * FROM people WHERE company_id = $company_id  ORDER BY company_id ");
+        $result = $people->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

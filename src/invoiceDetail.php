@@ -1,36 +1,17 @@
 <?php
 require_once 'includes/header.php';
+require_once 'Model/InvoicesManager.php';
+require_once 'Model/CompaniesManager.php';
+require_once 'Model/ContactsManager.php';
 
-
-try {
-    $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
-    // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $error) {
-    echo $error->getMessage();
-    exit;
-}
+$new_invoices_object = new InvoicesManager();
+$new_companies_object = new CompaniesManager();
+$new_contacts_object = new ContactsManager();
 
 if (isset($_GET['code'])) {
     $code = $_GET['code'];
 
-    try {
-        $results = $db->prepare(
-            "SELECT *
-            FROM invoices
-             
-             # The question mark instead of the ID
-             WHERE invoice_id=?"
-        );
-        //To bind the id variable to the first question mark. 
-        $results->bindParam(1, $code, PDO::PARAM_STR);
-        //To execute the query set into results object
-        $results->execute();
-    } catch (Exception $e) {
-        echo $e->getMessage();
-        exit;
-    }
-    // // To retreive the information for the one product that matches the ID
-    $product = $results->fetch(PDO::FETCH_ASSOC);
+    $product = $new_invoices_object->getInvoice($code);
 
     if ($product == FALSE) {
         echo "This code reference $code doesn't exist in the Database. </br> <a href='invoice.php''>Go back</a>";
@@ -42,13 +23,9 @@ if (isset($_GET['code'])) {
     $strD = substr($date, 8, 9);
     $newDate = "F" . $strY . $strM . $strD . "-" . $product['invoice_id'];
 }
-//else {
-//     echo "You have to enter a code reference !";
-//     die();
-// }
-$id = $product['company_id'];
-$id2 = $product['invoice_id'];
 
+$company_id = $product['company_id'];
+$invoice_id = $product['invoice_id'];
 
 ?>
 
@@ -75,28 +52,16 @@ $id2 = $product['invoice_id'];
             <hr>Company linked to the invoice<br></h3>
     <p>
         <?php
-        $donnees = $db->query("SELECT * FROM companies JOIN type_of_company ON id_type = typeId WHERE id_comp = $id  ORDER BY id_comp ");
-
-        while ($product = $donnees->fetch()) {
-            echo $product['name'] . ' | ' . $product['number_vta'] . ' | ' . $product['type'] .  '<br>';
-        }
-        $results->closeCursor();
-
+        $company = $new_companies_object->getCompanyById($company_id);
+        echo $company['name'] . ' | ' . $company['number_vta'] . ' | ' . $company['type'] .  '<br>';
         ?>
     <h3><strong>
-            <hr>Invoices<br></h3>
+            <hr>Contact person<br></h3>
     </p>
     <p>
         <?php
-        $donnees = $db->query("SELECT * FROM people as p JOIN invoices as i ON p.company_id = i.company_id  WHERE  invoice_id = $id2 AND p.person_id = i.personId");
-
-        while ($product = $donnees->fetch()) {
-
-
-            echo   $product['first_name'] . " " . $product['last_name']  .  " | " . $product['email'] . " | " . $product['phone'] .  '<br>';
-        }
-
-
+        [$person] = $new_contacts_object->getPersonLinkedToInvoice($invoice_id);
+            echo   $person["first_name"] . " " . $person["last_name"]  .  " | " . $person["email"] . " | " . $person["phone"] .  '<br>';
         ?>
 
         <?php echo '<a href="invoice.php">Go back</a>'; ?>
