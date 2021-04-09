@@ -33,15 +33,10 @@ echo '<strong>' . 'Companies Directory : '  . '<br>';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="styles/normalize.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="icon" type="image/png"  href="styles/img/cogip-logo.jpeg">
     <title>Companies</title>
-=======
-    <link rel="stylesheet" type="text/css" href="">
-    <title>Home</title>
->>>>>>> e977707fc7669d43979e65a213657c91d14cf74e
 </head>
 
 <body>
