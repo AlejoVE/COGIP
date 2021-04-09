@@ -102,10 +102,4 @@ echo '<strong>' . 'Companies Directory : '  . '<br>';
             </tr>
         <?php } ?>
     </table>
-<<<<<<< HEAD
     <?php require_once 'includes/footer.php'; ?>
-=======
-</body>
-
-</html>
->>>>>>> e977707fc7669d43979e65a213657c91d14cf74e

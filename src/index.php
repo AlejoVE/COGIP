@@ -61,7 +61,7 @@ $message = '';
 <body>
     <h1>Welcome to COGIP</h1>
     <h4>Bonjour
-        <? echo $_SESSION["name"] .'!'; ?>
+        <?php if(isset($_SESSION["name"])){ echo $name.'!'; } ?>
     </h4>
 
 

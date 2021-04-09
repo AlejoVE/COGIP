@@ -1,3 +1,9 @@
+body {
+  background-image: url(img/COGIP-bg.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
 h5 {
   padding-top: 46px;
   padding-bottom: 16px;

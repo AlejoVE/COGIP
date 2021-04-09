@@ -17,7 +17,7 @@ $invoices = $new_invoices->getAllInvoices();
 
 $new_contacts_object = new ContactsManager();
 $contacts = $new_contacts_object->getAllContacts();
-
+// echo $contacts;
 
 
 // while ($invoices == true) {

@@ -64,6 +64,9 @@ img{
 }
 
 
+
+
+
 .linkMenu:hover {
 	height: 3rem;
 	padding: .2rem 1rem;
@@ -75,6 +78,32 @@ img{
 	cursor: pointer;
 	border-radius: 6px;
 }
+
+.linkMenuButton{
+    height: 2rem;
+	padding: .2rem 1rem;
+	margin: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #0ddfaa;
+	cursor: pointer;
+	border-radius: 6px;
+    color: black;
+}
+
+.linkMenuButton:hover{
+    height: 3rem;
+	padding: .2rem 1rem;
+	margin: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #27afa8;
+	cursor: pointer;
+	border-radius: 6px;
+}
+
 
 .link {
 	padding: 0.5rem;
