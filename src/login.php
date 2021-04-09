@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
     }
 }
 if ($connect === '1') {
-    header('location: http://localhost/index.php');
+    header('location:invoice.php');
     echo $connect;
 } else {
     echo "connexion refusée";
