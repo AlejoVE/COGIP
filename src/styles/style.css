@@ -1,6 +1,7 @@
 body {
   background-image: url(img/COGIP-bg.jpg);
   background-size: cover;
+  background-repeat: repeat-y;
   height: 100vh;
 }
 
