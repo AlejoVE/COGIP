@@ -8,14 +8,6 @@ $new_companies_object = new CompaniesManager();
 $new_contacts_object = new ContactsManager();
 $new_invoices_object = new InvoicesManager();
 
-try {
-    $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
-    // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $error) {
-    echo $error->getMessage();
-    exit;
-}
-
 if (isset($_GET['code'])) {
     $code = $_GET['code'];
 

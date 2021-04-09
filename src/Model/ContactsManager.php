@@ -23,6 +23,29 @@ class ContactsManager extends Manager
         return $result;
     }
 
+    public function getPersonByIdWithCompany($person_id)
+    {
+        $db = $this->connectDb();
+        try {
+            $results = $db->prepare(
+                "SELECT *
+                FROM people
+                JOIN companies
+                ON company_id = id_comp
+                WHERE person_id=?"
+            );
+            //To bind the id variable to the first question mark. 
+            $results->bindParam(1, $person_id, PDO::PARAM_STR);
+            //To execute the query set into results object
+            $results->execute();
+            $person = $results->fetch(PDO::FETCH_ASSOC);
+            return $person;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
     public function getContactsNameId()
     {
         $db = $this->connectDb();
