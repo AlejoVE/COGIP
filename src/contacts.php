@@ -39,7 +39,7 @@ echo '<br>';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="styles/normalize.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="icon" type="image/png"  href="styles/img/cogip-logo.jpeg">
+    <link rel="icon" type="image/png" href="styles/img/cogip-logo.jpeg">
     <title>Contacts</title>
 </head>
 
@@ -74,5 +74,8 @@ echo '<br>';
                 </form>
             </tr>
         <?php } ?>
-        <?php require_once 'includes/footer.php'; ?>
 
+        
+</body>
+
+</html>
