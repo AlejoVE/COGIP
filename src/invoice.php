@@ -17,7 +17,7 @@ $invoices = $new_invoices->getAllInvoices();
 
 $new_contacts_object = new ContactsManager();
 $contacts = $new_contacts_object->getAllContacts();
-
+// echo $contacts;
 
 
 // while ($invoices == true) {
@@ -37,7 +37,9 @@ $contacts = $new_contacts_object->getAllContacts();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="">
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="icon" type="image/png" href="styles/img/cogip-logo.jpeg">
     <title>Home</title>
 </head>
 
@@ -169,8 +171,7 @@ $contacts = $new_contacts_object->getAllContacts();
             <?php }
             } ?>
 
-
-
+           
 </body>
 
 </html>

@@ -30,7 +30,9 @@ $company_id = $company['id_comp'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="icon" type="image/png"  href="styles/img/cogip-logo.jpeg">
+    <title>Companies Detail</title>
 </head>
 
 <body style="text-align: center;">
@@ -70,6 +72,4 @@ $company_id = $company['id_comp'];
 
         <?php echo '<a href="companies.php">Go back</a>'; ?>
     </p>
-</body>
-
-</html>
+    <?php require_once 'includes/footer.php'; ?>

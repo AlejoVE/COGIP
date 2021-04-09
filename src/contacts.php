@@ -37,8 +37,10 @@ echo '<br>';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="">
-    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="icon" type="image/png" href="styles/img/cogip-logo.jpeg">
+    <title>Contacts</title>
 </head>
 
 <body>
@@ -73,6 +75,7 @@ echo '<br>';
             </tr>
         <?php } ?>
 
+        
 </body>
 
 </html>

@@ -36,13 +36,15 @@ if (isset($_POST['login'])) {
 <html lang="fr">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="icon" type="image/png"  href="styles/img/cogip-logo.jpeg">
 
+	
 
-
-    <title>connexion</title>
+	<title>Connexion</title>
 
 </head>
 

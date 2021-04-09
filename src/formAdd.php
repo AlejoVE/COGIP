@@ -12,7 +12,10 @@ $new_contact = new ContactsController();
 $new_company = new CompaniesController();
 
 if (isset($_POST['addInvoice'])) {
-    $new_invoice->createInvoice();
+    if(isset($_POST['date_invoice'])){
+        $new_invoice->createInvoice();
+    }
+
     echo "<p>Success!! <br> The invoice has been sended</p>";
     echo "<a href='index.php'>Back</a>";
 };
@@ -29,13 +32,13 @@ if (isset($_POST['addCompany'])) {
     echo "<a href='index.php'>Back</a>";
 };
 
+if(isset($_POST['company_choice'])){
+    $company = $new_company->getCompanyById($_POST['company_choice']);
+    //Loads the workers in Contact Name select box
+    $workers = $new_contact ->getPeopleLinkedToCompany($company['id_comp']);
+};
 
 $companiesNameId = $new_company->getCompaniesNameID();
-$type_choice = $new_company->getTypeOfCompany();
-
-
-$contactsNameId = $new_contact->getContactsNameId();
-
 
 ?>
 
@@ -44,16 +47,22 @@ $contactsNameId = $new_contact->getContactsNameId();
         <h4>Create a new invoice : </h4>
         <div>
             <label>Company Name : </label>
-            <select name="company_choice">
+            <select name="company_choice" onchange="myForm.submit();">
+                <? if (isset($_POST["company_choice"])): ?>
+                <option value="<?= $company['id_comp'] ?>"><?php echo $company['name'] ?></option>
+                <? else: ?>
+                <option value="Select one">Select one</option>
                 <?php foreach ($companiesNameId as $company) {  ?>
                     <option value="<?= $company['id_comp'] ?>"><?php echo $company['name'] ?></option>
                 <?php } ?>
+                <? endif; ?>
                 </select>
             </div>
             <div>
                 <label>Contact Name : </label>
                 <select name="contact_choice">
-                <?php foreach($contactsNameId as $key => $name){  ?>
+                <option value="Select one">Select one</option>
+                <?php foreach($workers as $key => $name){  ?>
                     <option value="<?= $name['person_id'] ?>"><?php echo $name['first_name']." ".$name['last_name'] ?></option>
                 <?php } ?>
                 </select>
@@ -132,3 +141,4 @@ $contactsNameId = $new_contact->getContactsNameId();
             </div>
     </form>
 <?php } ?>
+<?php require_once 'includes/footer.php'; ?>

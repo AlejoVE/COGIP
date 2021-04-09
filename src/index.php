@@ -52,14 +52,16 @@ $message = '';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="">
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="icon" type="image/png"  href="styles/img/cogip-logo.jpeg">
     <title>Home</title>
 </head>
 
 <body>
     <h1>Welcome to COGIP</h1>
     <h4>Bonjour
-        <? echo $_SESSION["name"] .'!'; ?>
+        <?php if(isset($_SESSION["name"])){ echo $name.'!'; } ?>
     </h4>
 
 
@@ -86,8 +88,8 @@ $message = '';
                         <? echo  '<a href="invoiceDetail.php?code=' . $invoice['invoice_id'] . '" >'."F". $invoice['invoice_date']."-".$invoice['invoice_id']; ?>
                     </td>
                     <td>
-                        |
-                        <? echo $invoice['invoice_date']; ?> |
+                        
+                        <? echo $invoice['invoice_date']; ?> 
                     </td>
                     <td>
                         <? echo $invoice['name']; ?>
@@ -117,11 +119,11 @@ $message = '';
                         <? echo '<a href="peopleDetail.php?code=' . $contact['person_id'] . '" >'.$contact['first_name']." ".$contact['last_name']; ?>
                     </td>
                     <td>
-                        |
-                        <? echo $contact['phone']; ?> |
+                        
+                        <? echo $contact['phone']; ?> 
                     </td>
                     <td>
-                        <? echo $contact['email']; ?> |
+                        <? echo $contact['email']; ?> 
                     </td>
                     <td>
                         <? echo $contact['name']; ?>
@@ -138,10 +140,10 @@ $message = '';
     <h5>Last Companies :</h5>
     <table>
         <tr style="text-align: center;">
-            <th>Name |</th>
-            <th>TVA |</th>
-            <th>Country |</th>
-            <th>Type |</th>
+            <th>Name </th>
+            <th>TVA </th>
+            <th>Country </th>
+            <th>Type </th>
         </tr>
         <?php foreach ($companies as $company) { ?>
             <tr>
@@ -150,11 +152,11 @@ $message = '';
                         <? echo '<a href="companiesDetail.php?code=' . $company['id_comp'] . '" >' . $company['name']; ?>
                     </td>
                     <td>
-                        |
-                        <? echo $company['number_vta']; ?> |
+                        
+                        <? echo $company['number_vta']; ?> 
                     </td>
                     <td>
-                        <? echo $company['country']; ?> |
+                        <? echo $company['country']; ?> 
                     </td>
                     <td>
                         <? echo $company['type']; ?>
@@ -168,6 +170,4 @@ $message = '';
             </tr>
         <?php } ?>
     </table>
-</body>
-
-</html>
+    <?php require_once 'includes/footer.php'; ?>
