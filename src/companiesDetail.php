@@ -1,47 +1,25 @@
 <?php
 require_once 'includes/header.php';
+require_once 'Model/CompaniesManager.php';
+require_once 'Model/ContactsManager.php';
+require_once 'Model/InvoicesManager.php';
 
-try {
-    $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
-    // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $error) {
-    echo $error->getMessage();
-    exit;
-}
+$new_companies_object = new CompaniesManager();
+$new_contacts_object = new ContactsManager();
+$new_invoices_object = new InvoicesManager();
 
 if (isset($_GET['code'])) {
     $code = $_GET['code'];
 
-    try {
-        $results = $db->prepare(
-            "SELECT *
-            FROM companies
-             JOIN type_of_company
-             ON id_type = typeId  
-             # The question mark instead of the ID
-             WHERE id_comp=?"
-        );
-        //To bind the id variable to the first question mark. 
-        $results->bindParam(1, $code, PDO::PARAM_STR);
-        //To execute the query set into results object
-        $results->execute();
-    } catch (Exception $e) {
-        echo $e->getMessage();
-        exit;
-    }
-    // // To retreive the information for the one product that matches the ID
-    $product = $results->fetch(PDO::FETCH_ASSOC);
+    $company = $new_companies_object->getCompanyById($code);
 
     // if($product == FALSE) {
     //     echo "This code reference $code doesn't exist in the Database. </br> <a href='companies.php''>Go back</a>";
     //     die();
     // }
 }
-//else {
-//     echo "You have to enter a code reference !";
-//     die();
-// }
-$id = $product['id_comp'];
+
+$company_id = $company['id_comp'];
 
 
 ?>
@@ -57,38 +35,36 @@ $id = $product['id_comp'];
 
 <body style="text-align: center;">
     <h1>
-        Company : <?= $product['name'] ?>
+        Company : <?= $company['name'] ?>
     </h1>
-    <p><strong>TVA :</strong> <?= $product['number_vta'] ?></p>
-    <p><strong>Type :</strong> <?= $product['type'] ?></p>
+    <p><strong>TVA :</strong> <?= $company['number_vta'] ?></p>
+    <p><strong>Type :</strong> <?= $company['type'] ?></p>
 
     <h3><strong>
             <hr>Contact persons<br></h3>
     <p>
         <?php
-        $donnees = $db->query("SELECT * FROM people WHERE company_id = $id  ORDER BY company_id ");
+        $people = $new_contacts_object->getPeopleLinkedToCompany($company_id);
 
-        while ($product = $donnees->fetch()) {
-            echo $product['first_name'] . ' ' . $product['last_name'] . ' | ' . $product['phone'] . ' | ' . $product['email'] . '<br>';
+        foreach ($people as $person) {
+            echo $person['first_name'] . ' ' . $person['last_name'] . ' | ' . $person['phone'] . ' | ' . $person['email'] . '<br>';
         }
-        $results->closeCursor();
 
         ?>
     <h3><strong>
             <hr>Invoices<br></h3>
     <p>
         <?php
-        $donnees = $db->query("SELECT * FROM invoices as i JOIN people ON personId = person_id WHERE i.company_id = $id  ");
+        $invoices = $new_invoices_object->getInvoicesLinkedToCompany($company_id);
 
-        while ($product = $donnees->fetch()) {
-            $date = $product['invoice_date'];
+        foreach ($invoices as $invoice) {
+            $date = $invoice['invoice_date'];
             $strY = substr($date, 0, 4);
             $strM = substr($date, 5, -3);
             $strD = substr($date, 8, 9);
 
-            echo "F" . $strY . $strM . $strD . "-" . $product['invoice_id'] . " | " . $strD . "/" . $strM . "/" . $strY . " | " . $product['first_name'] . ' ' . $product['last_name'] . '<br>';
+            echo "F" . $strY . $strM . $strD . "-" . $invoice['invoice_id'] . " | " . $strD . "/" . $strM . "/" . $strY . " | " . $invoice['first_name'] . ' ' . $invoice['last_name'] . '<br>';
         }
-
 
         ?>
 

@@ -23,6 +23,45 @@ class InvoicesManager extends Manager
         return $result;
     }
 
+    public function getInvoice($code)
+    {
+        $db = $this->connectDb();
+        try {
+            $results = $db->prepare(
+                "SELECT *
+                FROM invoices
+                 
+                 # The question mark instead of the ID
+                 WHERE invoice_id=?"
+            );
+            //To bind the id variable to the first question mark. 
+            $results->bindParam(1, $code, PDO::PARAM_STR);
+            //To execute the query set into results object
+            $results->execute();
+            $product = $results->fetch(PDO::FETCH_ASSOC);
+            return $product;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
+    public function getInvoicesLinkedToCompany($company_id)
+    {
+        $db = $this->connectDb();
+        $invoices = $db->query("SELECT * FROM invoices as i JOIN people ON personId = person_id WHERE i.company_id = $company_id  ");
+        $result = $invoices->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getInvoicesLinkedToPerson($person_id)
+    {
+        $db = $this->connectDb();
+        $invoices = $db->query("SELECT * FROM invoices JOIN companies ON company_id = id_comp WHERE personId = $person_id  ORDER BY id_comp DESC LIMIT 0,5  ");
+        $result = $invoices->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function addInvoice ($company, $contact_id, $date)
     {
         $db = $this->connectDb();
