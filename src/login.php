@@ -6,7 +6,7 @@ require_once 'Model/LoginManager.php';
 $new_administrators_object = new AdministratorsManager();
 $administrators = $new_administrators_object->getAllAdministrators();
 $_SESSION['name'] = " ";
-$connect = '0';
+$connect = 0;
 echo $connect;
 
 if (isset($_POST['login'])) {
@@ -24,17 +24,12 @@ if (isset($_POST['login'])) {
             //echo $nameConnect . " " . $access;
             echo $_SESSION['access'];
             echo $_SESSION['name'];
-            $connect = '1';
-        }
-    }
-}
-if ($connect === '1') {
-    header('location:invoice.php');
-    echo $connect;
-} else {
-    echo "connexion refusée";
-}
+            $connect = 1;
+        };
+    };
+};
 ?>
+
 
 
 <!DOCTYPE html>
