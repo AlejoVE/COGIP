@@ -1,6 +1,5 @@
 <?php
 require_once 'includes/header.php';
-require_once 'includes/footer.php';
 require_once 'Controller/InvoicesController.php';
 require_once 'Controller/ContactsController.php';
 require_once 'Controller/CompaniesController.php';
@@ -133,3 +132,4 @@ $contactsNameId = $new_contact->getContactsNameId();
             </div>
     </form>
 <?php } ?>
+<?php require_once 'includes/footer.php'; ?>

@@ -1,6 +1,5 @@
 <?php  
 require_once 'includes/header.php';
-require_once 'includes/footer.php';
 require_once 'Model/LoginManager.php';
 
 $new_administrators_object = new AdministratorsManager();
@@ -42,14 +41,12 @@ if(isset($_POST['login'])){
 </head>
 
 <body>
-<div class="formConnexion">
-    <form action='#' method='POST'>
-        <input type="text" name="username" ></input>
-        <input type="text" name="password" value="password"></input>
-        <button type="submit" name='login' value="Login"></button>
-    </form>
-    <a href="index.php">GO BACK</a>
-</div>
-
-</body>
-</html> 
+    <div class="formConnexion">
+        <form action='#' method='POST'>
+            <input type="text" name="username" ></input>
+            <input type="text" name="password" value="password"></input>
+            <button type="submit" name='login' value="Login"></button>
+        </form>
+        <a href="index.php">GO BACK</a>
+    </div>
+    <?php require_once 'includes/footer.php'; ?>

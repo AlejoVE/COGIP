@@ -4,7 +4,6 @@
 // Ajouter header
 
 require_once 'includes/header.php';
-require_once 'includes/footer.php';
 require_once 'Model/InvoicesManager.php';
 require_once 'Model/CompaniesManager.php';
 require_once 'Model/ContactsManager.php';
@@ -173,8 +172,4 @@ $contacts = $new_contacts_object->getAllContacts();
             <?php }
             } ?>
 
-
-
-</body>
-
-</html>
+            <?php require_once 'includes/footer.php'; ?>

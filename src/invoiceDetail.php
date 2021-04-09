@@ -1,6 +1,6 @@
 <?php
 require_once 'includes/header.php';
-require_once 'includes/footer.php';
+
 
 try {
     $db = new PDO("mysql:host=remotemysql.com;dbname=nJpHWU5rJ5;port=3306", "nJpHWU5rJ5", "VnjcIEPzgV");
@@ -101,6 +101,4 @@ $id2 = $product['invoice_id'];
 
         <?php echo '<a href="invoice.php">Go back</a>'; ?>
     </p>
-</body>
-
-</html>
+    <?php require_once 'includes/footer.php'; ?>

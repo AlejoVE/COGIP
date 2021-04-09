@@ -1,6 +1,5 @@
 <?php
 require_once 'includes/header.php';
-require_once 'includes/footer.php';
 require_once 'Model/ContactsManager.php';
 
 // aligner les colonnes
@@ -75,7 +74,5 @@ echo '<br>';
                 </form>
             </tr>
         <?php } ?>
+        <?php require_once 'includes/footer.php'; ?>
 
-</body>
-
-</html>
