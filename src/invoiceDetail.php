@@ -59,6 +59,7 @@ $invoice_id = $product['invoice_id'];
     <p>
         <?php
         [$person] = $new_contacts_object->getPersonLinkedToInvoice($invoice_id);
+        // var_dump($person);
             echo   $person["first_name"] . " " . $person["last_name"]  .  " | " . $person["email"] . " | " . $person["phone"] .  '<br>';
         ?>
 

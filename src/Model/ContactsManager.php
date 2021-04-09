@@ -59,6 +59,7 @@ class ContactsManager extends Manager
         $db = $this->connectDb();
         $person = $db->query("SELECT * FROM people as p JOIN invoices as i ON p.company_id = i.company_id  WHERE  invoice_id = $invoice_id AND p.person_id = i.personId");
         $result = $person->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($result);
         return $result;
     }
 
