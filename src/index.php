@@ -97,11 +97,11 @@ $name = '';
                     </td>
                     <td>
                         <?php if (isset($_SESSION["access"]) && $_SESSION["access"] == "god") { ?>
-                            <input type="submit"
+                            <button type="submit"
                             name="delete_invoice" 
                             id="<?= $invoice['invoice_id'] ?>" 
-                            value="<?= $invoice['invoice_id'] ?>">
-                            </input>
+                            value="<?= $invoice['invoice_id'] ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
+                            </button>
                         <?php } ?>
                     </td>
                 </form>
@@ -136,11 +136,11 @@ $name = '';
                     </td>
                     <td>
                         <?php if (isset($_SESSION["access"]) && $_SESSION["access"] == "god") { ?>
-                            <input type="submit" 
+                            <button type="submit" 
                             name="delete_contact" 
                             id="<?= $contact['person_id'] ?>"
-                            value="<?php if(  $contact['person_id'] < 10){ echo '0'. $contact['person_id'];}else echo  $contact['person_id'] ; ?>">
-                            </input>
+                            value="<?php if(  $contact['person_id'] < 10){ echo '0'. $contact['person_id'];}else echo  $contact['person_id'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
+                            </button>
                         <?php } ?>
                     </td>
                 </form>
@@ -174,11 +174,11 @@ $name = '';
                     </td>
                     <td>
                         <?php if (isset($_SESSION["access"]) && $_SESSION["access"] == "god") { ?>
-                            <input type="submit" 
+                            <button type="submit" 
                             name="delete_company" 
                             id="<?= $company['id_comp'] ?>"
-                            value="<?php if( $company['id_comp'] < 10){ echo '0'.$company['id_comp'];}else echo $company['id_comp'] ; ?>">
-                            </input>
+                            value="<?php if( $company['id_comp'] < 10){ echo '0'.$company['id_comp'];}else echo $company['id_comp'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
+                            </button>
                         <?php } ?>
                     </td>
                 </form>
