@@ -57,27 +57,6 @@ class CompaniesManager extends Manager
         return $result;
     }
 
-    // public function getClients() {
-    //     $db = $this->connectDb();
-
-    //     $suppliers = $db->query("SELECT * FROM companies JOIN type_of_company ON id_type = typeId WHERE id_type=2 ");
-    //     $result = $suppliers->fetchAll(PDO::FETCH_ASSOC);
-    //     return $result;
-    // }
-
-    //To display all the companies
-    // public function getCompanies()
-    // {
-
-    //     $db = $this->connectDb();
-
-    //     $req = $db->query('SELECT ... AS ... 
-    //         FROM ... 
-    //         ORDER BY ... 
-    //         DESC');
-
-    //     return $req->fetch(PDO::FETCH_ASSOC);
-    // }
 
     //To display company by id
     public function getCompany(int $companyId)
