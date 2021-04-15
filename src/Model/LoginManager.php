@@ -13,4 +13,16 @@ class AdministratorsManager extends Manager
             $result = $contacts->fetchAll(PDO::FETCH_ASSOC);
             return $result;
     }
+
+    public function getAdmin($username, $password)
+    {
+        $db = $this->connectDb();
+        $sql="SELECT * FROM administrators WHERE username=:username AND password=:password";
+        $stm = $db->prepare($sql);
+        $stm->bindParam(':username', $username);
+        $stm->bindParam(':password', $password);
+        $stm->execute();
+        $result = $stm->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

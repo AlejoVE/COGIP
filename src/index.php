@@ -1,9 +1,8 @@
 <?php
 
-session_start();
 //echo $_SESSION["access"];
 
-
+require_once 'session.php';
 require_once 'includes/header.php';
 require_once 'Model/Manager.php';
 require_once 'Model/InvoicesManager.php';
@@ -42,8 +41,6 @@ if (isset($_GET['delete_company'])) {
     echo 'The company has been deleted';
 }
 //======================================Variables============================================================
-$name = '';
-
 
 ?>
 <!DOCTYPE html>
@@ -61,7 +58,7 @@ $name = '';
 <body>
     <h1>Welcome to COGIP</h1>
     <h4>Bonjour
-        <?php if(isset($_SESSION["name"])){ echo $name.'!'; } ?>
+        <?php if(isset($_SESSION["name"])){ echo $_SESSION["name"].'!'; } ?>
     </h4>
 
 
