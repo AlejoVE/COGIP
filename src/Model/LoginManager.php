@@ -18,11 +18,11 @@ class AdministratorsManager extends Manager
     {
         $db = $this->connectDb();
         $sql="SELECT * FROM administrators WHERE username=:username AND password=:password";
-        $stm = $db->prepare($sql);
-        $stm->bindParam(':username', $username);
-        $stm->bindParam(':password', $password);
-        $stm->execute();
-        $result = $stm->fetch(PDO::FETCH_ASSOC);
+        $admin = $db->prepare($sql);
+        $admin->bindParam(':username', $username);
+        $admin->bindParam(':password', $password);
+        $admin->execute();
+        $result = $admin->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 }
