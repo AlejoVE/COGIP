@@ -72,9 +72,16 @@ class ContactsManager extends Manager
     }
 
     public function addContact($first_name, $last_name, $email, $company_id, $phone)
-    {
-        $db = $this->connectDb();
-        $db->query("INSERT INTO people (first_name,last_name,email,company_id,phone) VALUES ('$first_name', '$last_name', '$email', '$company_id', '$phone')"); 
+    {   
+        try {
+            $db = $this->connectDb();
+            $db->query("INSERT INTO people (first_name,last_name,email,company_id,phone) VALUES ('$first_name', '$last_name', '$email', '$company_id', '$phone')");
+            return true; 
+        } catch (Exception $error) {
+           echo $error;
+           return false;
+        }
+        
     }
 
     public function deleteContact($contact_id)
@@ -84,3 +91,5 @@ class ContactsManager extends Manager
         $req->bindParam(':person_id', $contact_id, PDO::PARAM_INT);
     }
 }
+
+$contactsModel = new ContactsManager();

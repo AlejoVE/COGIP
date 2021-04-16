@@ -89,3 +89,5 @@ class CompaniesManager extends Manager
         $db->query("DELETE FROM companies WHERE id_comp= $company_id");
     }
 }
+
+$companiesModel = new CompaniesManager();

@@ -13,7 +13,13 @@ class ContactsController extends ContactsManager
         $email = $_POST['email'];
         $company_id = intval($_POST['company_choice']);
 
-        $this->addContact($first_name, $last_name, $email,  $company_id, $phone);
+         $result = $this->addContact($first_name, $last_name, $email,  $company_id, $phone);
+
+         if(!$result) {
+             echo "There was an error";
+         } else {
+             echo "ok";
+         }
     }
 
     //render function with both $_GET and $_POST vars available if it would be needed.
@@ -26,3 +32,5 @@ class ContactsController extends ContactsManager
     //     require './View/single-company.php';
     // }
 }
+
+$contactsController = new ContactsController();
