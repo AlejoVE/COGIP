@@ -53,7 +53,7 @@ class CompaniesManager extends Manager
     {
         $db = $this->connectDb();
         $company = $db->query("SELECT * FROM companies JOIN type_of_company ON id_type = typeId WHERE id_comp = $id  ORDER BY id_comp ");
-        $result =$company->fetch();
+        $result =$company->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -79,6 +79,26 @@ class CompaniesManager extends Manager
     {
         $db = $this->connectDb();
         $db->query("INSERT INTO companies (name,country,number_vta,id_type) VALUES ('$name_company', '$country', '$tva_number', '$company_type')");
+    }
+
+    public function updateCompanyById($company_id, $name, $country, $number_vta, $id_type)
+    {
+        $db = $this->connectDb();
+        try{ 
+            $sql = "UPDATE `companies` SET `name`=:name,`country`=:country,`number_vta`=:number_vta, `id_type`=:id_type WHERE id_comp =:company_id ";
+            $result = $db->prepare($sql);
+            $result->bindparam(':company_id',$company_id);
+            $result->bindparam(':name',$name);
+            $result->bindparam(':id_type',$id_type);
+            $result->bindparam(':country',$country);
+            $result->bindparam(':number_vta',$number_vta);
+
+            $result->execute();
+            return true;
+       }catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+       }
     }
 
     public function deleteCompany($company_id)

@@ -18,6 +18,23 @@ class CompaniesController extends CompaniesManager
 
         $this->addCompany($name_company, $country, $tva_number, $company_type);
     }
+
+    public function updateCompany()
+    {
+        $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING) ;
+        $tva_number = filter_var($_POST['tva_number'], FILTER_SANITIZE_STRING);
+        $country = filter_var($_POST['country'], FILTER_SANITIZE_STRING) ;
+        $company_type = intval($_POST['type_choice']);
+        $company_id = $_GET['id'];
+        var_dump($_POST);
+
+        if(!empty($name) && !empty($tva_number) && !empty($country)){
+            $result= $this->updateCompanyById($company_id, $name, $country, $tva_number, $company_type);
+            return $result;
+        } else {
+            return false;
+        }
+    }
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(array $GET, array $POST)
     {
@@ -27,4 +44,8 @@ class CompaniesController extends CompaniesManager
         //load the view
         require './View/single-company.php';
     }
+
+
 }
+
+$companiesController = new CompaniesController();
