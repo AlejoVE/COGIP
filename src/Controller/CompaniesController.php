@@ -26,7 +26,6 @@ class CompaniesController extends CompaniesManager
         $country = filter_var($_POST['country'], FILTER_SANITIZE_STRING) ;
         $company_type = intval($_POST['type_choice']);
         $company_id = $_GET['id'];
-        var_dump($_POST);
 
         if(!empty($name) && !empty($tva_number) && !empty($country)){
             $result= $this->updateCompanyById($company_id, $name, $country, $tva_number, $company_type);

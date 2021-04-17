@@ -8,7 +8,6 @@
             echo "<span class='text text-success'>Company updated!</span><br/>";
             echo "<a href='index.php'>Back</a>";
 
-            //TODO: check the select box to make sure the company types is correct
         } else {
             echo "<span class='text text-danger'>There was an error</span><br/>";
             echo "<a href='index.php'>Back</a>";
@@ -19,7 +18,7 @@
     if(isset($_GET['id'])){
         $company_id = $_GET["id"];
         $company = $companiesController->getCompanyById($company_id);
-
+        $typesOfCompany = $companiesController->getTypeOfCompany();
     }
 
 ?>
@@ -42,8 +41,9 @@
             <div>
                 <label>Company Type : </label>
                 <select name="type_choice">
-                    <option value="1">Client</option>
-                    <option value="2">Provider</option>
+                    <?php foreach($typesOfCompany as $typeOfCompany) {?> 
+                        <option value="<?php echo $typeOfCompany["typeId"] ?>" <?php if($company['typeId'] == $typeOfCompany['typeId']) echo 'selected' ?>><?php echo $typeOfCompany["type"] ?></option>
+                    <?php }?>
                 </select>
             </div>
             <div class="button">
