@@ -6,11 +6,14 @@ require_once 'Model/CompaniesManager.php';
 
 
     if (isset($_POST['addContact'])) {
-        $contactsController->createContact();
-        echo "<p>Success!! <br> The contact has been saved</p>";
-        echo "<a href='index.php'>Back</a>";
-
-        //TODO:  create method UPDATEContact in ContactsModel to update a user
+      
+        $result = $contactsController->updateContact();
+        if(!$result){
+            echo "<span class='text text-danger'>There was an error, please fill up all fields</span>";
+        } else {
+            echo "<span class='text text-success'>Contact updated!</span>";;
+           
+        }
     };
 
     if(isset($_GET['id'])){

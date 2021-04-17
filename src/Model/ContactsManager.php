@@ -84,6 +84,27 @@ class ContactsManager extends Manager
         
     }
 
+    public function updateContactById($person_id, $first_name, $last_name, $email, $company_id, $phone)
+    {
+        $db = $this->connectDb();
+        try{ 
+            $sql = "UPDATE `people` SET `first_name`=:first_name,`last_name`=:last_name,`email`=:email,`company_id`=:company_id,`phone`=:phone WHERE person_id =:person_id ";
+            $result = $db->prepare($sql);
+            $result->bindparam(':person_id',$person_id);
+            $result->bindparam(':first_name',$first_name);
+            $result->bindparam(':last_name',$last_name);
+            $result->bindparam(':email',$email);
+            $result->bindparam(':company_id',$company_id);
+            $result->bindparam(':phone',$phone);
+
+            $result->execute();
+            return true;
+       }catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+       }
+    }
+
     public function deleteContact($contact_id)
     {
         $db = $this->connectDb();

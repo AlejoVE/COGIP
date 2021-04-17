@@ -32,11 +32,7 @@ if (isset($_POST['login'])) {
     //     };
     // };
 
-    // header('location: index.php');
 };
-// $administrators = $new_administrators_object->getAllAdministrators();
-// $_SESSION['name'] = " ";
-$connect = 0;
 
 ?>
 
