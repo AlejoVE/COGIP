@@ -46,6 +46,7 @@ class InvoicesManager extends Manager
         }
     }
 
+
     public function getInvoicesLinkedToCompany($company_id)
     {
         $db = $this->connectDb();
@@ -66,6 +67,25 @@ class InvoicesManager extends Manager
     {
         $db = $this->connectDb();
         $db->query("INSERT INTO invoices (company_id,personId,invoice_date) VALUES ($company,$contact_id,$date)");
+    }
+
+    public function updateInvoiceById($invoice_id, $company_id, $person_id, $invoice_date)
+    {
+        $db = $this->connectDb();
+        try{ 
+            $sql = "UPDATE `invoices` SET `company_id`=:company_id,`personId`=:person_id,`invoice_date`=:invoice_date WHERE invoice_id =:invoice_id";
+            $result = $db->prepare($sql);
+            $result->bindParam(':company_id', $company_id);
+            $result->bindParam(':person_id', $person_id);
+            $result->bindParam(':invoice_id', $invoice_id);
+            $result->bindParam(':invoice_date', $invoice_date);
+
+            $result->execute();
+            return true;
+       }catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+       }
     }
 
     public function deleteInvoice($invoice_id)

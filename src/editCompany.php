@@ -1,5 +1,4 @@
 <?php 
-    require_once 'Controller/CompaniesController.php';
 
     if (isset($_POST['addCompany'])) {
         $result = $companiesController->updateCompany();
@@ -15,8 +14,8 @@
       
     };
 
-    if(isset($_GET['id'])){
-        $company_id = $_GET["id"];
+    if(isset($_GET['companyID'])){
+        $company_id = $_GET["companyID"];
         $company = $companiesController->getCompanyById($company_id);
         $typesOfCompany = $companiesController->getTypeOfCompany();
     }

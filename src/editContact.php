@@ -1,9 +1,4 @@
 <?php 
-require_once 'includes/header.php'; 
-require_once "Model/ContactsManager.php";
-require_once 'Controller/ContactsController.php';
-require_once 'Model/CompaniesManager.php';
-
 
     if (isset($_POST['addContact'])) {
       
@@ -16,10 +11,9 @@ require_once 'Model/CompaniesManager.php';
         }
     };
 
-    if(isset($_GET['id'])){
-        $person_id = $_GET["id"];
+    if(isset($_GET['contactID'])){
+        $person_id = $_GET["contactID"];
         $person = $contactsModel->getPersonByIdWithCompany($person_id);
-        $companiesNameId = $companiesModel-> getCompaniesNameID();
         if(!$person){
             echo 'There is no person with that ID';
         } else {
@@ -27,7 +21,7 @@ require_once 'Model/CompaniesManager.php';
 ?>
 
         <form action="#" method="post">
-                    <h4>Edit a new contact : </h4>
+                    <h4>Edit contact : </h4>
                     <div>
                         <label for="lastName">Last name :</label>
                         <input type="text" id="lastNamxe" name="lastName" value="<?php echo $person["last_name"] ?>">

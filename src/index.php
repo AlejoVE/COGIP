@@ -99,7 +99,11 @@ if (isset($_GET['delete_company'])) {
                             id="<?= $invoice['invoice_id'] ?>" 
                             value="<?= $invoice['invoice_id'] ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
                             </button>
-                            
+                            <a
+                                href="edit.php?invoiceID=<?= $invoice['invoice_id'] ?>"
+                            >
+                                Edit
+                            </a>
                         <?php } ?>
                     </td>
                 </form>
@@ -140,7 +144,7 @@ if (isset($_GET['delete_company'])) {
                             value="<?php if(  $contact['person_id'] < 10){ echo '0'. $contact['person_id'];}else echo  $contact['person_id'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
                             </button>
                             <a
-                                href="editContact.php?id=<?= $contact['person_id'] ?>"
+                                href="edit.php?contactID=<?= $contact['person_id'] ?>"
                             >
                                 Edit
                             </a>
@@ -182,6 +186,11 @@ if (isset($_GET['delete_company'])) {
                             id="<?= $company['id_comp'] ?>"
                             value="<?php if( $company['id_comp'] < 10){ echo '0'.$company['id_comp'];}else echo $company['id_comp'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
                             </button>
+                            <a
+                                href="edit.php?companyID=<?= $company['id_comp'] ?>"
+                            >
+                                Edit
+                            </a>
                         <?php } ?>
                     </td>
                 </form>

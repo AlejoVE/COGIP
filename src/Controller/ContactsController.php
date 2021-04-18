@@ -29,7 +29,7 @@ class ContactsController extends ContactsManager
         $phone = filter_var($_POST['phone'], FILTER_SANITIZE_NUMBER_INT) ;
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $company_id = intval($_POST['company_choice']);
-        $person_id = $_GET['id'];
+        $person_id = $_GET['contactID'];
 
         if(filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($first_name) && !empty($last_name)){
             $result= $this->updateContactById($person_id, $first_name, $last_name, $email, $company_id, $phone);
