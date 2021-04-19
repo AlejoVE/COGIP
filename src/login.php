@@ -5,28 +5,32 @@ require_once 'Model/LoginManager.php';
 
 $new_administrators_object = new AdministratorsManager();
 $administrators = $new_administrators_object->getAllAdministrators();
-$_SESSION['name'] = " ";
-$connect = 0;
+$_SESSION['login'] = " ";
+$connect = ' ';
+$error=' ';
 
 
-if (isset($_POST['login'])) {
+if (isset($_POST['login']))
+{
+    // if(!empty($_POST['username']) && !empty($_POST['password'])) 
+    // {
+        $username = htmlspecialchars($_POST['username']);
+        $password = htmlspecialchars($_POST['password']);
 
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
-
-    foreach ($administrators as $administrator) {
-
-        if ($username === $administrator['username'] && $password === $administrator['password']) {
-            $nameConnect = $administrator['first_name'];
-            $access = $administrator['access'];
-            $_SESSION['access'] = $access;
-            $_SESSION['name'] = $nameConnect;
-            //echo $nameConnect . " " . $access;
-            // echo $_SESSION['access'];
-            // echo $_SESSION['name'];
-            $connect = 1;
-        };
+        foreach ($administrators as $administrator) 
+        {
+            if ($username === $administrator['username'] && $password === $administrator['password']) 
+            {
+                $_SESSION['name'] = $administrator['first_name'];
+                $_SESSION['access'] = $administrator['access'];
+                $_SESSION['login'] = $_SESSION['name'];
+                $connect = 'logged';
+            }else $connect = 'error';
+        // };
+        
+        
     };
+    echo $connect;
 };
 ?>
 
@@ -49,6 +53,18 @@ if (isset($_POST['login'])) {
 </head>
 
 <body>
+<h4> Connection </h4>
+<?php if($connect == 'logged'){ ?>
+    <div>
+        <p> Bon retour parmis nous! </p>
+        <a href="index.php">Go Home</a>
+    </div>
+<?php }  ?>
+
+
+    <?php if($connect == 'error'){ ?>
+        <p>Login or mdp are bad!</p>
+    <?php }  ?>
     <div class="formConnexion">
         <form action='#' method='POST'>
             <input type="text" name="username"></input>
@@ -57,7 +73,7 @@ if (isset($_POST['login'])) {
         </form>
         <a href="index.php">GO BACK</a>
     </div>
-
+    
 </body>
 
 </html>

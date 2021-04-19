@@ -41,11 +41,8 @@ if (isset($_GET['delete_company'])) {
     $new_companies_object->deleteCompany($company_id);
     echo 'The company has been deleted';
 }
-//======================================Variables============================================================
-$name = '';
+?> 
 
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -61,7 +58,7 @@ $name = '';
 <body>
     <h1>Welcome to COGIP</h1>
     <h4>Bonjour
-        <?php if(isset($_SESSION["name"])){ echo $name.'!'; } ?>
+        <?php if(isset($_SESSION["name"])){ echo $_SESSION["name"].'!'; } ?>
     </h4>
 
 
@@ -74,7 +71,7 @@ $name = '';
         </form>
     <?php } ?>
 
-    <h5>Last Invoices :</h5>
+    <h5> Last Invoices :</h5>
     <table>
         <tr style="text-align: center;">
             <th>Invoice Number</th>
@@ -109,7 +106,7 @@ $name = '';
         <?php } ?>
 
     </table>
-    <h5>Last Contacts :</h5>
+    <h5> Last Contacts :</h5>
     <table>
         <tr style="text-align: center;">
             <th>Name</th>
@@ -147,7 +144,7 @@ $name = '';
             </tr>
         <?php } ?>
     </table>
-    <h5>Last Companies :</h5>
+    <h5> Last Companies :</h5>
     <table>
         <tr style="text-align: center;">
             <th>Name </th>
