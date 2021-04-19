@@ -25,11 +25,11 @@
             </div>
 
             <div class="placementLink">
-                <div class="linkMenu"><a class='link' href="../index.php">Home</a></div>
+                <div class="linkMenu"><a class='link' href="/src/index.php">Home</a></div>
                 <div><button class="linkMenuButton"name="Invoice" href="#">Invoices</button></div>
                 <div><button class="linkMenuButton" name="Companies" href="#">Companies</button></div>
                 <div><button class="linkMenuButton" name="Contacts" href="#">Contacts</button></div>
-                <div class="linkMenu"><a class='link' href="../login.php">Connexion</a></div>
+                <div class="linkMenu"><a class='link' href="/src/login.php">Connexion</a></div>
             </div>
         </nav>
         </div>
