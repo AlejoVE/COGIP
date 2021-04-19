@@ -97,12 +97,12 @@ if (isset($_GET['delete_company'])) {
                             <button type="submit"
                             name="delete_invoice" 
                             id="<?= $invoice['invoice_id'] ?>" 
-                            value="<?= $invoice['invoice_id'] ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
+                            value="<?= $invoice['invoice_id'] ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;" alt="delete">
                             </button>
                             <a
                                 href="edit.php?invoiceID=<?= $invoice['invoice_id'] ?>"
                             >
-                                Edit
+                                <img src="styles/img/edit.svg" style="height: 30px; width:30px;" alt="edit">
                             </a>
                         <?php } ?>
                     </td>
@@ -141,12 +141,12 @@ if (isset($_GET['delete_company'])) {
                             <button type="submit" 
                             name="delete_contact" 
                             id="<?= $contact['person_id'] ?>"
-                            value="<?php if(  $contact['person_id'] < 10){ echo '0'. $contact['person_id'];}else echo  $contact['person_id'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
+                            value="<?php if(  $contact['person_id'] < 10){ echo '0'. $contact['person_id'];}else echo  $contact['person_id'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;" alt="delete">
                             </button>
                             <a
                                 href="edit.php?contactID=<?= $contact['person_id'] ?>"
                             >
-                                Edit
+                                <img src="styles/img/edit.svg" style="height: 30px; width:30px;" alt="edit">
                             </a>
                         <?php } ?>
                     </td>
@@ -184,12 +184,12 @@ if (isset($_GET['delete_company'])) {
                             <button type="submit" 
                             name="delete_company" 
                             id="<?= $company['id_comp'] ?>"
-                            value="<?php if( $company['id_comp'] < 10){ echo '0'.$company['id_comp'];}else echo $company['id_comp'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
+                            value="<?php if( $company['id_comp'] < 10){ echo '0'.$company['id_comp'];}else echo $company['id_comp'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;" alt="delete">
                             </button>
                             <a
                                 href="edit.php?companyID=<?= $company['id_comp'] ?>"
                             >
-                                Edit
+                                <img src="styles/img/edit.svg" style="height: 30px; width:30px;" alt="edit">
                             </a>
                         <?php } ?>
                     </td>
