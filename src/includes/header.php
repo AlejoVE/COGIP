@@ -20,7 +20,7 @@
       <nav class="header">
             <div class="logoOutline">
                 <div class="logoImage">
-                    <img src="../styles/img/cogip-logo.jpeg" alt="cogipLogo">
+                    <img src="/src/styles/img/cogip-logo.jpeg" alt="cogipLogo">
                 </div>
             </div>
 
