@@ -1,9 +1,8 @@
 <?php
 
-session_start();
 //echo $_SESSION["access"];
 
-
+require_once 'session.php';
 require_once 'includes/header.php';
 require_once 'Model/Manager.php';
 require_once 'Model/InvoicesManager.php';
@@ -41,8 +40,9 @@ if (isset($_GET['delete_company'])) {
     $new_companies_object->deleteCompany($company_id);
     echo 'The company has been deleted';
 }
-?> 
+//======================================Variables============================================================
 
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -99,6 +99,11 @@ if (isset($_GET['delete_company'])) {
                             id="<?= $invoice['invoice_id'] ?>" 
                             value="<?= $invoice['invoice_id'] ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
                             </button>
+                            <a
+                                href="edit.php?invoiceID=<?= $invoice['invoice_id'] ?>"
+                            >
+                                Edit
+                            </a>
                         <?php } ?>
                     </td>
                 </form>
@@ -138,6 +143,11 @@ if (isset($_GET['delete_company'])) {
                             id="<?= $contact['person_id'] ?>"
                             value="<?php if(  $contact['person_id'] < 10){ echo '0'. $contact['person_id'];}else echo  $contact['person_id'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
                             </button>
+                            <a
+                                href="edit.php?contactID=<?= $contact['person_id'] ?>"
+                            >
+                                Edit
+                            </a>
                         <?php } ?>
                     </td>
                 </form>
@@ -176,6 +186,11 @@ if (isset($_GET['delete_company'])) {
                             id="<?= $company['id_comp'] ?>"
                             value="<?php if( $company['id_comp'] < 10){ echo '0'.$company['id_comp'];}else echo $company['id_comp'] ; ?>"><img src="styles/img/delete.svg" style="height: 30px; width:30px;">
                             </button>
+                            <a
+                                href="edit.php?companyID=<?= $company['id_comp'] ?>"
+                            >
+                                Edit
+                            </a>
                         <?php } ?>
                     </td>
                 </form>
